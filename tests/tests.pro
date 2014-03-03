@@ -15,3 +15,5 @@ OBJECTS_DIR = $$QCITYBUILDER_OBJ_TESTS
 MOC_DIR= $$QCITYBUILDER_MOC_TESTS
 
 SOURCES += main.cpp \
+    testcontainerwithidentifier.cpp \
+    testinventory.cpp

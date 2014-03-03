@@ -9,6 +9,7 @@ OBJECTS_DIR = $$QCITYBUILDER_OBJ_LIB
 MOC_DIR= $$QCITYBUILDER_MOC_LIB
 
 SOURCES += \
+    inventory.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -17,4 +18,9 @@ HEADERS  += \
     utils/noninstantiable.hpp \
     utils/make_unique.hpp \
     utils/point.hpp \
-    utils/uniquecontainerwithname.hpp
+    utils/singleton.hpp \
+    utils/uniquecontainerwithname.hpp \
+    utils/containerwithidentifier.hpp \
+    ressourceshandler.hpp \
+    inventory.hpp \
+    utils/nonmovable.hpp
