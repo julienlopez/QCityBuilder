@@ -11,6 +11,8 @@ BEGIN_NAMESPACE_UTILS
 class nonmovable
 {
 protected:
+    nonmovable() = default;
+
     nonmovable(nonmovable&&) = delete;
 
     nonmovable& operator=(nonmovable&&) = delete;

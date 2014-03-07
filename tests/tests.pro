@@ -5,6 +5,7 @@ TEMPLATE = app
 
 include (../QCityBuilder.pri)
 include (../gtest.pri)
+include (../gmock.pri)
 
 LIBS += -L$$QCITYBUILDER_BIN
 LIBS += -lQCityBuilder
@@ -16,4 +17,5 @@ MOC_DIR= $$QCITYBUILDER_MOC_TESTS
 
 SOURCES += main.cpp \
     testcontainerwithidentifier.cpp \
-    testinventory.cpp
+    testinventory.cpp \
+    testdeep_ptr.cpp

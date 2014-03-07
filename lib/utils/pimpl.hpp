@@ -1,9 +1,7 @@
 #ifndef PIMPL_HPP
 #define PIMPL_HPP
 
-#include "namespace_utils.hpp"
-
-#include <memory>
+#include "deep_ptr.hpp"
 
 BEGIN_NAMESPACE_UTILS
 
@@ -20,15 +18,11 @@ protected:
 
     ~pimpl() = default;
 
-    pimpl(const pimpl&) = delete;
-    pimpl(pimpl&& p): m_ptr(std::move(p.m_ptr))
-    {}
+    pimpl(const pimpl&) = default;
+    pimpl(pimpl&& p) = default;
 
-    pimpl& operator=(const pimpl&) = delete;
-    pimpl& operator=(pimpl&& p)
-    {
-        m_ptr = std::move(p.m_ptr);
-    }
+    pimpl& operator=(const pimpl&) = default;
+    pimpl& operator=(pimpl&& p) = default;
 
     Impl& get()
     {
@@ -41,7 +35,7 @@ protected:
     }
 
 private:
-    std::unique_ptr<Impl> m_ptr;
+    utils::deep_ptr<Impl> m_ptr;
 };
 
 END_NAMESPACE_UTILS

@@ -23,4 +23,5 @@ HEADERS  += \
     utils/containerwithidentifier.hpp \
     ressourceshandler.hpp \
     inventory.hpp \
-    utils/nonmovable.hpp
+    utils/nonmovable.hpp \
+    utils/deep_ptr.hpp

@@ -11,6 +11,8 @@ BEGIN_NAMESPACE_UTILS
 class noncopiable
 {
 protected:
+    noncopiable() = default;
+
     noncopiable(const noncopiable&) = delete;
 
     noncopiable& operator=(const noncopiable&) = delete;
