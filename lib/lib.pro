@@ -9,7 +9,8 @@ OBJECTS_DIR = $$QCITYBUILDER_OBJ_LIB
 MOC_DIR= $$QCITYBUILDER_MOC_LIB
 
 SOURCES += \
-    inventory.cpp
+    inventory.cpp \
+    producer.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -24,4 +25,5 @@ HEADERS  += \
     ressourceshandler.hpp \
     inventory.hpp \
     utils/nonmovable.hpp \
-    utils/deep_ptr.hpp
+    utils/deep_ptr.hpp \
+    producer.hpp
