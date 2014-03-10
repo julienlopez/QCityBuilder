@@ -28,47 +28,69 @@ struct deep_ptr_clone_copy
 template<class T, class COPY_POLICY = deep_ptr_basic_copy> class deep_ptr
 {
 public:
-    deep_ptr(T* t): m_ptr(t)
+    using ptr_t = std::unique_ptr<T>;
+    using pointer = typename ptr_t::pointer;
+    using element_type = typename ptr_t::element_type;
+    using reference = typename std::add_lvalue_reference<element_type>::type;
+    using const_reference = typename std::add_const<reference>::type;
+
+    deep_ptr() noexcept = default;
+
+    deep_ptr(pointer t) noexcept : m_ptr(t)
     {}
 
     template<class U>
-    deep_ptr(const deep_ptr<U>& p): m_ptr(COPY_POLICY::clone(*p.m_ptr))
+    deep_ptr(const deep_ptr<U>& p): m_ptr(p.m_ptr ? COPY_POLICY::clone(*p.m_ptr) : nullptr)
     {}
 
-    deep_ptr(const deep_ptr& p): m_ptr(COPY_POLICY::clone(*p.m_ptr))
+    deep_ptr(const deep_ptr& p): m_ptr(p.m_ptr ? COPY_POLICY::clone(*p.m_ptr) : nullptr)
     {}
 
     deep_ptr(deep_ptr&&) = default;
 
     deep_ptr& operator=(const deep_ptr& p)
     {
-        m_ptr = ptr_t(new T(*p.m_ptr));
+        m_ptr.reset(p.m_ptr ? COPY_POLICY::clone(*p.m_ptr) : nullptr);
     }
 
     deep_ptr& operator=(deep_ptr&&) = default;
 
-    T& operator*()
+    reference operator*() noexcept
     {
         return *m_ptr;
     }
 
-    const T& operator*() const
+    const_reference operator*() const noexcept
     {
         return *m_ptr;
     }
 
-    bool operator==(const deep_ptr& p) const
+    bool operator==(const deep_ptr& p) const noexcept
     {
         return m_ptr == p.m_ptr;
     }
 
-    bool operator!=(const deep_ptr& p) const
+    bool operator!=(const deep_ptr& p) const noexcept
     {
         return !(*this == p);
     }
 
+    operator bool () const noexcept
+    {
+        return (bool)m_ptr;
+    }
+
+    pointer operator->() const noexcept
+    {
+        return m_ptr.get();
+    }
+
+    pointer get() const noexcept
+    {
+        return m_ptr.get();
+    }
+
 private:
-    using ptr_t = std::unique_ptr<T>;
     ptr_t m_ptr;
 };
 
