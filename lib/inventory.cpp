@@ -46,9 +46,16 @@ std::size_t Inventory::spaceOccupied() const
 
 void Inventory::take(identifier id, std::size_t amount_)
 {
-    if(m_map.find(id) == m_map.end()) throw std::invalid_argument("not any of " + std::to_string(id));
-    if(m_map[id] < amount_)
+    auto it = m_map.find(id);
+    if(it == m_map.end()) throw std::invalid_argument("not any of " + std::to_string(id));
+    if(it->second < amount_)
         throw std::invalid_argument("not enough of " + std::to_string(id) + ": "
-                                    + std::to_string(m_map[id]) + " < " + std::to_string(amount_));
-    m_map[id] -= amount_;
+                                    + std::to_string(it->second) + " < " + std::to_string(amount_));
+    it->second -= amount_;
+    if(it->second == 0) m_map.erase(it);
+}
+
+bool Inventory::hasEnough(identifier id, std::size_t amount_) const
+{
+    return amount(id) >= amount_;
 }

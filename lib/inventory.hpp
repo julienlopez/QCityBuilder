@@ -26,6 +26,8 @@ public:
 
     void take(identifier id, std::size_t amount_);
 
+    bool hasEnough(identifier id, std::size_t amount_) const;
+
 private:
     using type_map = std::map<identifier, std::size_t>;
 

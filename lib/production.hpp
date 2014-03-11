@@ -12,9 +12,15 @@ public:
     using pair_identifier_amount = std::pair<identifier, std::size_t>;
     using container_pairs_identifier_amount = std::vector<pair_identifier_amount>;
 
-    Production(container_pairs_identifier_amount inputs, container_pairs_identifier_amount outputs);
+    Production(std::size_t timeout_, container_pairs_identifier_amount inputs_, container_pairs_identifier_amount output_s);
+
+    const container_pairs_identifier_amount& inputs() const;
+    const container_pairs_identifier_amount& outputs() const;
+
+    std::size_t timeout() const;
 
 private:
+    std::size_t m_timeout;
     container_pairs_identifier_amount m_inputs;
     container_pairs_identifier_amount m_outputs;
 };
