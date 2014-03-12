@@ -3,6 +3,8 @@
 
 #include "namespace_utils.hpp"
 
+#include <cstddef>
+
 BEGIN_NAMESPACE_UTILS
 
 template<class T> class Point_
@@ -38,7 +40,9 @@ bool operator==(const Point_<T>& p1, const Point_<U>& p2)
     return p1.x() == p2.x() && p1.y() == p2.y();
 }
 
-using Point = Point_<double>;
+using Point = Point_<int>;
+using PointU = Point_<std::size_t>;
+using PointF = Point_<double>;
 
 END_NAMESPACE_UTILS
 
