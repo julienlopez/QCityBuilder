@@ -21,6 +21,11 @@ public:
         return m_height;
     }
 
+    T volume() const
+    {
+        return m_width * m_height;
+    }
+
 private:
     T m_width;
     T m_height;

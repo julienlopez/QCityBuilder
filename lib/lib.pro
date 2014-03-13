@@ -13,7 +13,8 @@ SOURCES += \
     producer.cpp \
     production.cpp \
     world/map.cpp \
-    world/building.cpp
+    world/building.cpp \
+    world/city.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -35,4 +36,6 @@ HEADERS  += \
     world/namespace_world.hpp \
     utils/rect.hpp \
     world/building.hpp \
-    utils/size.hpp
+    utils/size.hpp \
+    world/city.hpp \
+    utils/array2d.hpp

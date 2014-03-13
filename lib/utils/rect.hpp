@@ -52,6 +52,15 @@ public:
         return p.x() >= m_topLeft.x() && p.x() <= bt.x() && p.y() >= m_topLeft.y() && p.y() <= bt.y();
     }
 
+    template<class FCT>
+    void for_each(FCT fct) const
+    {
+        auto bt = bottomRight();
+        for(T x = topLeft().x(); x <= bt.x(); x++)
+            for(T y = topLeft().y(); y <= bt.y(); y++)
+                fct(type_point(x, y));
+    }
+
 private:
     type_point m_topLeft;
     type_size m_size;

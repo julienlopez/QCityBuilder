@@ -1,30 +1,30 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "building.hpp"
+#include "namespace_world.hpp"
 
-#include <vector>
+#include <utils/array2d.hpp>
+#include <utils/rect.hpp>
 
 BEGIN_NAMESPACE_WORLD
 
 class Map
 {
 public:
-    Map(std::size_t width_, std::size_t height_);
+    enum class SquareType : unsigned char {Empty=0, Building, Road};
+
+    Map(utils::SizeU size_);
 
     std::size_t width() const;
     std::size_t height() const;
 
     bool squareIsEmpty(const utils::PointU& p) const;
 
-    void add(Building b);
+    void placeBuilding(const utils::RectU& r);
 
 private:
-    std::size_t m_width;
-    std::size_t m_height;
-
-    using container_building = std::vector<Building>;
-    container_building m_buildings;
+    using type_container = utils::Array2D<SquareType>;
+    type_container m_squares;
 };
 
 END_NAMESPACE_WORLD

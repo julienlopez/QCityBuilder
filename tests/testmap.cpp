@@ -1,12 +1,13 @@
 #include <gtest/gtest.h>
 
-#include <world/map.hpp>
+#include <world/city.hpp>
 
 using namespace World;
 
 struct TestMap : public testing::Test
 {
-    Map map {10, 10};
+    City city {{10, 10}};
+    const Map& map = city.map();
 };
 
 TEST_F(TestMap, EmptyOnCreation)
@@ -18,7 +19,7 @@ TEST_F(TestMap, EmptyOnCreation)
 
 TEST_F(TestMap, SquaresNotEmptyAfterPlacingABuilding)
 {
-    map.add(Building(utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
+    city.add(Building(utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
     for(std::size_t x = 0; x < map.width(); x++)
         for(std::size_t y = 0; y < map.height(); y++)
         {
