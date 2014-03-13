@@ -26,4 +26,9 @@ auto City::buildings() const -> const container_building&
     return m_buildings;
 }
 
+void City::addRoad(Map::square_container_t squares)
+{
+    m_map.addRoad(std::move(squares));
+}
+
 END_NAMESPACE_WORLD

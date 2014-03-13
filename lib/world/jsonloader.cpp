@@ -42,6 +42,16 @@ City JsonLoader::parseCity(const QJsonObject& object)
         city.add(parseBuilding(value.toObject()));
     }
 
+    it = object.find("roads");
+    assert(it != object.end());
+    assert(it.value().isArray());
+    array = it.value().toArray();
+    for(const auto& value : array)
+    {
+        assert(value.isObject());
+        city.addRoad({parsePointU(value.toObject())});
+    }
+
     return city;
 }
 

@@ -8,6 +8,7 @@
 
 using namespace World;
 const std::string strJsonEmptyCity = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
+const std::string strJsonCityWithARoad = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [{\"x\": 3,\"y\": 5},{\"x\": 4,\"y\": 5},{\"x\": 5,\"y\": 5},{\"x\": 6,\"y\": 5}],\"size\": {\"height\": 10,\"width\": 10}}";
 const std::string strJsonCityWithOneBuilding = "{\"buildings\": [{\"entrance\": {\"x\": 5,\"y\": 5},\"rectangle\": {\"size\": {\"height\": 2,\"width\": 3},\"topleft\": {\"x\": 2,\"y\": 2}},\"type\": \"test_building\"}],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
 
 struct TestCity : public ::testing::Test
@@ -37,6 +38,20 @@ TEST_F(TestCity, loadingCityWithOneBuildingFromJson)
 //    ASSERT_EQ("test_building", b.type());
 }
 
+TEST_F(TestCity, loadingCityWithARoad)
+{
+    auto c = JsonLoader::parseCity(JsonLoader::stringToJsonObject(strJsonCityWithARoad));
+    const auto& map = c.map();
+    for(std::size_t x = 0; x < map.width(); x++)
+        for(std::size_t y = 0; y < map.height(); y++)
+        {
+            if(x >= 3 && x <= 6 && y == 5)
+                ASSERT_EQ(Map::SquareType::Road, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Road";
+            else
+                ASSERT_EQ(Map::SquareType::Empty, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Empty";
+        }
+}
+
 struct TestEmptyCity : public TestCity
 {
     City city {"TestTown", {10, 10}};
@@ -47,6 +62,14 @@ TEST_F(TestEmptyCity, savingToJson)
     std::ostringstream oss;
     JsonSaver::writeToStream(JsonSaver::saveCity(city), oss);
     ASSERT_EQ(strJsonEmptyCity, oss.str());
+}
+
+TEST_F(TestEmptyCity, savingToJsonWithARoad)
+{
+    city.addRoad({{3, 5}, {4, 5}, {5, 5}, {6, 5}});
+    std::ostringstream oss;
+    JsonSaver::writeToStream(JsonSaver::saveCity(city), oss);
+    ASSERT_EQ(strJsonCityWithARoad, oss.str());
 }
 
 struct TestCityWithOneBuilding : public TestEmptyCity

@@ -24,6 +24,8 @@ public:
 
     const container_building& buildings() const;
 
+    void addRoad(Map::square_container_t squares);
+
 private:
     std::string m_name;
     Map m_map;

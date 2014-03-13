@@ -26,7 +26,18 @@ QJsonObject JsonSaver::saveCity(const City& city)
     res.insert("buildings", buildings);
 
     res.insert("size", saveSizeU(city.map().size()));
-    res.insert("roads", QJsonArray());
+
+    QJsonArray roads;
+    i = 0;
+    for(std::size_t x = 0; x < city.map().width(); x++)
+        for(std::size_t y = 0; y < city.map().height(); y++)
+            if(city.map().squareType({x, y}) == Map::SquareType::Road)
+            {
+                roads.insert(i++, savePointU({x, y}));
+            }
+
+    res.insert("roads", roads);
+
     return res;
 }
 

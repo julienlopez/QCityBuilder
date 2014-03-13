@@ -22,12 +22,23 @@ const utils::SizeU& Map::size() const
 
 bool Map::squareIsEmpty(const utils::PointU &p) const
 {
-    return m_squares(p) == SquareType::Empty;
+    return squareType(p) == SquareType::Empty;
 }
 
 void Map::placeBuilding(const utils::RectU& r)
 {
     r.for_each([this](const utils::PointU& p){ m_squares(p) = SquareType::Building; });
+}
+
+auto Map::squareType(const utils::PointU& p) const -> SquareType
+{
+    return m_squares(p);
+}
+
+void Map::addRoad(square_container_t squares)
+{
+    for(const auto& s : squares)
+        m_squares(s) = SquareType::Road;
 }
 
 END_NAMESPACE_WORLD

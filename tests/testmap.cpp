@@ -29,3 +29,16 @@ TEST_F(TestMap, SquaresNotEmptyAfterPlacingABuilding)
                 ASSERT_TRUE(map.squareIsEmpty(utils::PointU(x, y)));
         }
 }
+
+TEST_F(TestMap, addStraightRoad)
+{
+    city.addRoad({{5,2}, {5,3}, {5,4}, {5,5}});
+    for(std::size_t x = 0; x < map.width(); x++)
+        for(std::size_t y = 0; y < map.height(); y++)
+        {
+            if(x == 5 && y >= 2 && y <= 5)
+                ASSERT_EQ(Map::SquareType::Road, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Road";
+            else
+                ASSERT_EQ(Map::SquareType::Empty, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Empty";
+        }
+}
