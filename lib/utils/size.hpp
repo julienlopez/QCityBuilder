@@ -3,6 +3,8 @@
 
 #include "namespace_utils.hpp"
 
+#include <cstddef>
+
 BEGIN_NAMESPACE_UTILS
 
 template<class T> class Size_
@@ -30,6 +32,12 @@ private:
     T m_width;
     T m_height;
 };
+
+template<class T, class U>
+bool operator==(const Size_<T>& s1, const Size_<U>& s2)
+{
+    return s1.width() == s2.width() && s1.height() == s2.height();
+}
 
 using Size = Size_<int>;
 using SizeU = Size_<std::size_t>;

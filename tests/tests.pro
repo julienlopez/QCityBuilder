@@ -20,4 +20,5 @@ SOURCES += main.cpp \
     testinventory.cpp \
     testdeep_ptr.cpp \
     testproducer.cpp \
-    testmap.cpp
+    testmap.cpp \
+    testcity.cpp

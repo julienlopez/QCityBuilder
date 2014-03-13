@@ -2,7 +2,7 @@
 
 BEGIN_NAMESPACE_WORLD
 
-City::City(utils::SizeU size_): m_map(std::move(size_))
+City::City(std::string name_, utils::SizeU size_): m_name(std::move(name_)), m_map(std::move(size_))
 {}
 
 void City::add(Building b)
@@ -14,6 +14,16 @@ void City::add(Building b)
 const Map& City::map() const
 {
     return m_map;
+}
+
+const std::string& City::name() const
+{
+    return m_name;
+}
+
+auto City::buildings() const -> const container_building&
+{
+    return m_buildings;
 }
 
 END_NAMESPACE_WORLD

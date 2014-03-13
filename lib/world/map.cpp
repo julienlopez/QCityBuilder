@@ -15,6 +15,11 @@ std::size_t Map::height() const
     return m_squares.height();
 }
 
+const utils::SizeU& Map::size() const
+{
+    return m_squares.size();
+}
+
 bool Map::squareIsEmpty(const utils::PointU &p) const
 {
     return m_squares(p) == SquareType::Empty;

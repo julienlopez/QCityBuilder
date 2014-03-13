@@ -18,6 +18,8 @@ public:
     std::size_t width() const;
     std::size_t height() const;
 
+    const utils::SizeU& size() const;
+
     bool squareIsEmpty(const utils::PointU& p) const;
 
     void placeBuilding(const utils::RectU& r);

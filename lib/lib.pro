@@ -14,7 +14,9 @@ SOURCES += \
     production.cpp \
     world/map.cpp \
     world/building.cpp \
-    world/city.cpp
+    world/city.cpp \
+    world/jsonloader.cpp \
+    world/jsonsaver.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -38,4 +40,6 @@ HEADERS  += \
     world/building.hpp \
     utils/size.hpp \
     world/city.hpp \
-    utils/array2d.hpp
+    utils/array2d.hpp \
+    world/jsonloader.hpp \
+    world/jsonsaver.hpp

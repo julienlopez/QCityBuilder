@@ -6,7 +6,7 @@ using namespace World;
 
 struct TestMap : public testing::Test
 {
-    City city {{10, 10}};
+    City city {"TestTown", {10, 10}};
     const Map& map = city.map();
 };
 

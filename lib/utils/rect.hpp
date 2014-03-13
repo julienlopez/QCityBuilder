@@ -66,6 +66,12 @@ private:
     type_size m_size;
 };
 
+template<class T, class U>
+bool operator==(const Rect_<T>& r1, const Rect_<U>& r2)
+{
+    return r1.topLeft() == r2.topLeft() && r1.size() == r2.size();
+}
+
 using Rect = Rect_<int>;
 using RectU = Rect_<std::size_t>;
 using RectF = Rect_<double>;

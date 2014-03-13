@@ -4,22 +4,29 @@
 #include "building.hpp"
 #include "map.hpp"
 
+#include <string>
+
 BEGIN_NAMESPACE_WORLD
 
 class City
 {
 public:
-    City(utils::SizeU size_);
+    using container_building = std::vector<Building>;
+
+    City(std::string name_, utils::SizeU size_);
     ~City() = default;
 
     void add(Building b);
 
     const Map& map() const;
 
-private:
-    Map m_map;
+    const std::string& name() const;
 
-    using container_building = std::vector<Building>;
+    const container_building& buildings() const;
+
+private:
+    std::string m_name;
+    Map m_map;
     container_building m_buildings;
 };
 
