@@ -8,7 +8,11 @@ class CityScene : public QGraphicsScene
     Q_OBJECT
 public:
     explicit CityScene(QObject* p = 0);
-    virtual ~CityScene();
+    virtual ~CityScene() = default;
+
+    void initScene();
+
+    static const std::size_t s_resolution;
 
 signals:
 
