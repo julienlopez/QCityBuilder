@@ -83,11 +83,13 @@ utils::SizeU JsonLoader::parseSizeU(const QJsonObject& object)
 
     auto it = object.find("width");
     assert(it != object.end());
-    std::size_t width = it.value().toInt();
+    assert(it.value().isDouble());
+    std::size_t width = it.value().toDouble();
 
     it = object.find("height");
     assert(it != object.end());
-    std::size_t height = it.value().toInt();
+    assert(it.value().isDouble());
+    std::size_t height = it.value().toDouble();
 
     return utils::SizeU(width, height);
 }
@@ -98,11 +100,13 @@ utils::PointU JsonLoader::parsePointU(const QJsonObject& object)
 
     auto it = object.find("x");
     assert(it != object.end());
-    std::size_t x = it.value().toInt();
+    assert(it.value().isDouble());
+    std::size_t x = it.value().toDouble();
 
     it = object.find("y");
     assert(it != object.end());
-    std::size_t y = it.value().toInt();
+    assert(it.value().isDouble());
+    std::size_t y = it.value().toDouble();
 
     return utils::PointU(x, y);
 }

@@ -61,16 +61,16 @@ QJsonObject JsonSaver::saveBuilding(const Building& building)
 QJsonObject JsonSaver::saveSizeU(const utils::SizeU& size)
 {
     QJsonObject res;
-    res.insert("height", (qint64)size.height());
-    res.insert("width", (qint64)size.width());
+    res.insert("height", (double)size.height());
+    res.insert("width", (double)size.width());
     return res;
 }
 
 QJsonObject JsonSaver::savePointU(const utils::PointU& point)
 {
     QJsonObject res;
-    res.insert("x", (qint64)point.x());
-    res.insert("y", (qint64)point.y());
+    res.insert("x", (double)point.x());
+    res.insert("y", (double)point.y());
     return res;
 }
 
