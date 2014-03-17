@@ -16,6 +16,10 @@ protected:
     noncopiable(const noncopiable&) = delete;
 
     noncopiable& operator=(const noncopiable&) = delete;
+
+    noncopiable(noncopiable&&) = default;
+
+    noncopiable& operator=(noncopiable&&) = default;
 };
 
 END_NAMESPACE_UTILS

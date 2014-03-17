@@ -50,6 +50,16 @@ public:
         return it->second;
     }
 
+    ID idOf(const T& t) const
+    {
+        for(const auto& p : m_map)
+        {
+            if(p.second == t) return p.first;
+        }
+        throw std::invalid_argument("unable to find required element in the container.");
+        return -1;
+    }
+
 private:
     using type_map = std::map<ID, T>;
     type_map m_map;

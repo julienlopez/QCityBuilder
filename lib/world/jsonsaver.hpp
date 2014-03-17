@@ -15,6 +15,7 @@ BEGIN_NAMESPACE_WORLD
 class City;
 //class Map;
 class Building;
+class BuildingType;
 
 class JsonSaver : private utils::noninstantiable
 {
@@ -24,6 +25,9 @@ public:
     static QJsonObject saveCity(const City& city);
 
     static QJsonObject saveBuilding(const Building& building);
+
+    static QJsonObject saveBuildingType(const BuildingType& building);
+
 
 //    static QJsonObject saveMap(const Map& map);
 

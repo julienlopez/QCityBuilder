@@ -2,8 +2,7 @@
 #define BUILDINGTYPE_HPP
 
 #include <utils/noncopiable.hpp>
-#include <utils/nonmovable.hpp>
-#include <utils/rect.hpp>
+#include <utils/size.hpp>
 
 #include <ressourceshandler.hpp>
 
@@ -13,14 +12,14 @@
 
 BEGIN_NAMESPACE_WORLD
 
-struct BuildingType : private utils::noncopiable, private utils::nonmovable
+struct BuildingType : private utils::noncopiable
 {
     using requirements_map_t = std::map<RessourcesHandler::type_identifier, std::size_t>;
 
-    BuildingType(std::string name_, utils::RectU rectangle_, requirements_map_t requirements_);
+    BuildingType(std::string name_, utils::SizeU size_, requirements_map_t requirements_);
 
     const std::string name;
-    const utils::RectU rectangle;
+    const utils::SizeU size;
     const requirements_map_t requirements;
 };
 

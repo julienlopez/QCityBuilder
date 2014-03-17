@@ -1,5 +1,6 @@
 #include "jsonloader.hpp"
 #include "city.hpp"
+#include "buildingtype.hpp"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -20,32 +21,18 @@ City JsonLoader::parseCity(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    auto it = object.find("name");
-    assert(it != object.end());
-    assert(it.value().isString());
-    std::string name = it.value().toString().toStdString();
-
-    it = object.find("size");
-    assert(it != object.end());
-    assert(it.value().isObject());
-    utils::SizeU size = parseSizeU(it.value().toObject());
-
+    std::string name = findString(object, "name");
+    utils::SizeU size = parseSizeU(findObject(object, "size"));
     City city(name, size);
 
-    it = object.find("buildings");
-    assert(it != object.end());
-    assert(it.value().isArray());
-    auto array = it.value().toArray();
+    auto array = findArray(object, "buildings");
     for(const auto& value : array)
     {
         assert(value.isObject());
         city.add(parseBuilding(value.toObject()));
     }
 
-    it = object.find("roads");
-    assert(it != object.end());
-    assert(it.value().isArray());
-    array = it.value().toArray();
+    array = findArray(object, "roads");
     for(const auto& value : array)
     {
         assert(value.isObject());
@@ -59,37 +46,43 @@ Building JsonLoader::parseBuilding(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    auto it = object.find("type");
-    assert(it != object.end());
-    assert(it.value().isString());
-    std::string type = it.value().toString().toStdString();
-
-    it = object.find("entrance");
-    assert(it != object.end());
-    assert(it.value().isObject());
-    auto entrance = parsePointU(it.value().toObject());
-
-    it = object.find("rectangle");
-    assert(it != object.end());
-    assert(it.value().isObject());
-    auto rectangle = parseRectU(it.value().toObject());
+    std::string type = findString(object, "type");
+    auto entrance = parsePointU(findObject(object, "entrance"));
+    auto rectangle = parseRectU(findObject(object, "rectangle"));
 
     return Building(entrance, rectangle);
+}
+
+BuildingType JsonLoader::parseBuildingType(const QJsonObject& object)
+{
+    assert(!object.isEmpty());
+
+    std::string name = findString(object, "name");
+    auto size = parseSizeU(findObject(object, "size"));
+
+    BuildingType::requirements_map_t requirements;
+    auto array = findArray(object, "requirements");
+    for(const auto& pair : array)
+    {
+        assert(pair.isObject());
+        auto o = pair.toObject();
+
+        std::string pairName = findString(o, "name");
+        std::size_t pairAmount = findDouble(o, "amount");
+
+        auto id = RessourcesHandler::instance().idOf(pairName);
+        requirements.insert(std::make_pair(id, pairAmount));
+    }
+
+    return BuildingType(name, size, requirements);
 }
 
 utils::SizeU JsonLoader::parseSizeU(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    auto it = object.find("width");
-    assert(it != object.end());
-    assert(it.value().isDouble());
-    std::size_t width = it.value().toDouble();
-
-    it = object.find("height");
-    assert(it != object.end());
-    assert(it.value().isDouble());
-    std::size_t height = it.value().toDouble();
+    std::size_t width = findDouble(object, "width");
+    std::size_t height = findDouble(object, "height");
 
     return utils::SizeU(width, height);
 }
@@ -98,15 +91,8 @@ utils::PointU JsonLoader::parsePointU(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    auto it = object.find("x");
-    assert(it != object.end());
-    assert(it.value().isDouble());
-    std::size_t x = it.value().toDouble();
-
-    it = object.find("y");
-    assert(it != object.end());
-    assert(it.value().isDouble());
-    std::size_t y = it.value().toDouble();
+    std::size_t x = findDouble(object, "x");
+    std::size_t y = findDouble(object, "y");
 
     return utils::PointU(x, y);
 }
@@ -115,18 +101,42 @@ utils::RectU JsonLoader::parseRectU(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    auto it = object.find("size");
-    assert(it != object.end());
-    assert(it.value().isObject());
-    auto size = parseSizeU(it.value().toObject());
-
-    it = object.find("topleft");
-    assert(it != object.end());
-    assert(it.value().isObject());
-    auto topleft = parsePointU(it.value().toObject());
+    auto size = parseSizeU(findObject(object, "size"));
+    auto topleft = parsePointU(findObject(object, "topleft"));
 
     return utils::RectU(topleft, size);
 }
 
+std::string JsonLoader::findString(const QJsonObject& object, const std::string& name)
+{
+    auto it = object.find(QString::fromStdString(name));
+    assert(it != object.end());
+    assert(it.value().isString());
+    return it.value().toString().toStdString();
+}
+
+double JsonLoader::findDouble(const QJsonObject& object, const std::string& name)
+{
+    auto it = object.find(QString::fromStdString(name));
+    assert(it != object.end());
+    assert(it.value().isDouble());
+    return it.value().toDouble();
+}
+
+QJsonObject JsonLoader::findObject(const QJsonObject& object, const std::string& name)
+{
+    auto it = object.find(QString::fromStdString(name));
+    assert(it != object.end());
+    assert(it.value().isObject());
+    return it.value().toObject();
+}
+
+QJsonArray JsonLoader::findArray(const QJsonObject& object, const std::string& name)
+{
+    auto it = object.find(QString::fromStdString(name));
+    assert(it != object.end());
+    assert(it.value().isArray());
+    return it.value().toArray();
+}
 
 END_NAMESPACE_WORLD

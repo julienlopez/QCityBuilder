@@ -21,4 +21,5 @@ SOURCES += main.cpp \
     testdeep_ptr.cpp \
     testproducer.cpp \
     testmap.cpp \
-    testcity.cpp
+    testcity.cpp \
+    testbuildingtype.cpp

@@ -1,4 +1,5 @@
 #include "jsonsaver.hpp"
+#include "buildingtype.hpp"
 #include "city.hpp"
 
 #include <QJsonArray>
@@ -47,6 +48,26 @@ QJsonObject JsonSaver::saveBuilding(const Building& building)
     res.insert("type", QString("test_building"));
     res.insert("rectangle", saveRectU(building.rectangle()));
     res.insert("entrance", savePointU(building.entrance()));
+    return res;
+}
+
+QJsonObject JsonSaver::saveBuildingType(const BuildingType& buildingtype)
+{
+    QJsonObject res;
+    res.insert("name", QString::fromStdString(buildingtype.name));
+    res.insert("size", saveSizeU(buildingtype.size));
+
+    QJsonArray requirements;
+    int i = 0;
+    for(const auto& p : buildingtype.requirements)
+    {
+        QJsonObject o;
+        o.insert("name", QString::fromStdString(RessourcesHandler::instance().get(p.first)));
+        o.insert("amount", (double)p.second);
+        requirements.insert(i++, o);
+    }
+    res.insert("requirements", requirements);
+
     return res;
 }
 
