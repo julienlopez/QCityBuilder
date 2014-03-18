@@ -60,8 +60,21 @@ public:
         return -1;
     }
 
-private:
+protected:
     using type_map = std::map<ID, T>;
+    using const_iterator = typename type_map::const_iterator;
+
+    const_iterator begin() const
+    {
+        return m_map.begin();
+    }
+
+    const_iterator end() const
+    {
+        return m_map.end();
+    }
+
+private:
     type_map m_map;
 };
 

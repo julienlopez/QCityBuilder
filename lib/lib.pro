@@ -18,7 +18,8 @@ SOURCES += \
     world/jsonloader.cpp \
     world/jsonsaver.cpp \
     world/currentcityholder.cpp \
-    world/buildingtype.cpp
+    world/buildingtype.cpp \
+    world/buildingtypehandler.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -46,4 +47,5 @@ HEADERS  += \
     world/jsonloader.hpp \
     world/jsonsaver.hpp \
     world/currentcityholder.hpp \
-    world/buildingtype.hpp
+    world/buildingtype.hpp \
+    world/buildingtypehandler.hpp

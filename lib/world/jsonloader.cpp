@@ -46,11 +46,12 @@ Building JsonLoader::parseBuilding(const QJsonObject& object)
 {
     assert(!object.isEmpty());
 
-    std::string type = findString(object, "type");
+    auto typeName = findString(object, "type");
     auto entrance = parsePointU(findObject(object, "entrance"));
     auto rectangle = parseRectU(findObject(object, "rectangle"));
 
-    return Building(entrance, rectangle);
+    auto typeId = BuildingTypeHandler::instance().getByName(typeName);
+    return Building(typeId, entrance, rectangle);
 }
 
 BuildingType JsonLoader::parseBuildingType(const QJsonObject& object)

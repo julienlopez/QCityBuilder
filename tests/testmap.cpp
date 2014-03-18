@@ -19,7 +19,7 @@ TEST_F(TestMap, EmptyOnCreation)
 
 TEST_F(TestMap, SquaresNotEmptyAfterPlacingABuilding)
 {
-    city.add(Building(utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
+    city.add(Building(0, utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
     for(std::size_t x = 0; x < map.width(); x++)
         for(std::size_t y = 0; y < map.height(); y++)
         {

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <world/buildingtypehandler.hpp>
 #include <world/city.hpp>
 #include <world/jsonsaver.hpp>
 #include <world/jsonloader.hpp>
@@ -15,7 +16,18 @@ struct TestCity : public ::testing::Test
 {
     virtual void SetUp() override
     {
+        try
+        {
+            buildingID = BuildingTypeHandler::instance().getByName(buildingName);
+        }
+        catch(std::invalid_argument& ex)
+        {
+            buildingID = BuildingTypeHandler::instance().add(BuildingType(buildingName, {5, 5}, {}));
+        }
     }
+
+    std::string buildingName = "test_building";
+    BuildingTypeHandler::type_identifier buildingID;
 };
 
 TEST_F(TestCity, loadingEmptyCityFromJson)
@@ -35,7 +47,7 @@ TEST_F(TestCity, loadingCityWithOneBuildingFromJson)
     const auto& b = c.buildings().front();
     ASSERT_EQ(utils::PointU(5, 5), b.entrance());
     ASSERT_EQ(utils::RectU(utils::PointU(2, 2), utils::SizeU(3, 2)), b.rectangle());
-//    ASSERT_EQ("test_building", b.type());
+    ASSERT_EQ(BuildingTypeHandler::instance().getByName("test_building"), b.type());
 }
 
 TEST_F(TestCity, loadingCityWithARoad)
@@ -77,7 +89,7 @@ struct TestCityWithOneBuilding : public TestEmptyCity
     virtual void SetUp() override
     {
         TestEmptyCity::SetUp();
-        city.add(Building(utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
+        city.add(Building(buildingID, utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
     }
 };
 
