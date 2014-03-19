@@ -3,6 +3,7 @@
 
 #include <utils/noncopiable.hpp>
 #include <utils/nonmovable.hpp>
+#include <utils/rect.hpp>
 
 #include <string>
 
@@ -13,10 +14,14 @@ public:
 
     std::string message() const;
 
+    utils::RectU area(const utils::PointU& pos) const;
+
 protected:
     iState() = default;
 
     virtual std::string impl_message() const = 0;
+
+    virtual utils::RectU impl_area(const utils::PointU& pos) const = 0;
 };
 
 #endif // ISTATE_HPP

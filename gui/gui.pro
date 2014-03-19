@@ -24,7 +24,6 @@ MOC_DIR= $$QCITYBUILDER_MOC_GUI
 SOURCES += main.cpp\
         mainwindow.cpp \
     screen.cpp \
-    cityscene.cpp \
     statedock.cpp \
     buttonplacebuilding.cpp \
     states/placebuildingstate.cpp \
@@ -32,7 +31,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
-    cityscene.hpp \
     statedock.hpp \
     buttonplacebuilding.hpp \
     states/placebuildingstate.hpp \

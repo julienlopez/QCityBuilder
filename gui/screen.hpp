@@ -1,25 +1,33 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
-#include <QGraphicsView>
+#include <QWidget>
 
 #include <memory>
 
 class iState;
 
-class Screen : public QGraphicsView
+namespace World {
+    class City;
+}
+
+class Screen : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Screen(QGraphicsScene* s, QWidget* p = 0);
+    explicit Screen(QWidget* p = 0);
 
 protected:
-    virtual void drawBackground(QPainter* painter, const QRectF& rectangle) override;
+    virtual void paintEvent(QPaintEvent* evt) override;
 
-    void wheelEvent(QWheelEvent* evt);
+    virtual void wheelEvent(QWheelEvent* evt) override;
 
 private:
     std::shared_ptr<iState> m_currentState;
+
+    double computeZoomToFit(const World::City& city) const;
+
+    void drawGround(const World::City& city, QPainter& painter) const;
 
     void do_zoom(int delta);
 

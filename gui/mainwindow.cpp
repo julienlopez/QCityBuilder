@@ -1,13 +1,12 @@
 #include "mainwindow.hpp"
 #include "screen.hpp"
-#include "cityscene.hpp"
 #include "statedock.hpp"
 
 #include <QStatusBar>
 
 MainWindow::MainWindow(QWidget* p): QMainWindow(p)
 {
-    auto* screen = new Screen(new CityScene);
+    auto* screen = new Screen;
     connect(screen, &Screen::displayStatusText, this, &MainWindow::onDisplayStatusText);
     setCentralWidget(screen);
     screen->setMinimumSize(800, 600);
