@@ -45,6 +45,7 @@ void Screen::paintEvent(QPaintEvent* evt)
 
     painter.scale(ratio, ratio);
     drawGround(city, painter);
+    drawCurrentStateArea(city, painter);
 }
 
 double Screen::computeZoomToFit(const World::City& city) const
@@ -69,6 +70,12 @@ void Screen::drawGround(const World::City& city, QPainter& painter) const
             painter.setBrush(b);
             painter.drawRect(QRectF(QPointF(i, j), QSizeF(1, 1)));
         }
+}
+
+void Screen::drawCurrentStateArea(const World::City& city, QPainter& painter) const
+{
+    if(!m_currentState) return;
+    m_currentState->area();
 }
 
 void Screen::wheelEvent(QWheelEvent* evt)

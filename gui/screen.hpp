@@ -1,6 +1,8 @@
 #ifndef SCREEN_HPP
 #define SCREEN_HPP
 
+#include <utils/point.hpp>
+
 #include <QWidget>
 
 #include <memory>
@@ -23,11 +25,14 @@ protected:
     virtual void wheelEvent(QWheelEvent* evt) override;
 
 private:
+    utils::PointU m_mousePosition;
     std::shared_ptr<iState> m_currentState;
 
     double computeZoomToFit(const World::City& city) const;
 
     void drawGround(const World::City& city, QPainter& painter) const;
+
+    void drawCurrentStateArea(const World::City& city, QPainter& painter) const;
 
     void do_zoom(int delta);
 
