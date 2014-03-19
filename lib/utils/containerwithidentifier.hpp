@@ -5,6 +5,7 @@
 
 #include <map>
 #include <limits>
+#include <cassert>
 
 BEGIN_NAMESPACE_UTILS
 
@@ -60,7 +61,6 @@ public:
         return -1;
     }
 
-protected:
     using type_map = std::map<ID, T>;
     using const_iterator = typename type_map::const_iterator;
 

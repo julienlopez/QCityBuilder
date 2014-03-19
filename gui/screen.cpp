@@ -1,4 +1,5 @@
 #include "screen.hpp"
+#include <states/istate.hpp>
 
 #include <cassert>
 
@@ -32,4 +33,11 @@ void Screen::do_zoom(int delta)
 {
     double zoom = 1.0 + (delta / 1000.0);
     scale(zoom, zoom);
+}
+
+void Screen::onNewStateActivated(std::shared_ptr<iState> state)
+{
+    m_currentState = state;
+    emit displayStatusText(QString::fromStdString(state->message()));
+    update();
 }

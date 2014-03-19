@@ -3,6 +3,10 @@
 
 #include <QGraphicsView>
 
+#include <memory>
+
+class iState;
+
 class Screen : public QGraphicsView
 {
     Q_OBJECT
@@ -15,12 +19,15 @@ protected:
     void wheelEvent(QWheelEvent* evt);
 
 private:
+    std::shared_ptr<iState> m_currentState;
+
     void do_zoom(int delta);
 
 signals:
+    void displayStatusText(QString);
 
 public slots:
-
+    void onNewStateActivated(std::shared_ptr<iState> state);
 };
 
 #endif // SCREEN_HPP

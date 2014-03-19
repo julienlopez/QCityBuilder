@@ -17,6 +17,13 @@ QJsonObject JsonLoader::stringToJsonObject(const std::string& json)
     return doc.object();
 }
 
+QJsonArray JsonLoader::stringToJsonArray(const std::string& json)
+{
+    auto doc = QJsonDocument::fromJson(QString::fromStdString(json).toUtf8());
+    assert(doc.isArray());
+    return doc.array();
+}
+
 City JsonLoader::parseCity(const QJsonObject& object)
 {
     assert(!object.isEmpty());

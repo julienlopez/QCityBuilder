@@ -10,6 +10,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget* p = 0);
     ~MainWindow();
+
+private slots:
+    void onDisplayStatusText(QString text);
 };
 
 #endif // MAINWINDOW_HPP

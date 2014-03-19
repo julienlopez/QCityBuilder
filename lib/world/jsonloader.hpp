@@ -21,6 +21,7 @@ class JsonLoader : private utils::noninstantiable
 {
 public:
     static QJsonObject stringToJsonObject(const std::string& json);
+    static QJsonArray stringToJsonArray(const std::string& json);
 
     static City parseCity(const QJsonObject& object);
 
