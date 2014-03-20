@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget* p): QMainWindow(p)
     auto* stateDock = new StateDock;
     addDockWidget(Qt::RightDockWidgetArea, stateDock);
     connect(stateDock, &StateDock::newStateActivated, screen, &Screen::onNewStateActivated);
+    connect(screen, &Screen::currentStateCleared, stateDock, &StateDock::clearCurrentState);
 }
 
 MainWindow::~MainWindow()

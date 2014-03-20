@@ -14,6 +14,19 @@
 Screen::Screen(QWidget* p): QWidget(p)
 {
 //    setDragMode(QGraphicsView::ScrollHandDrag);
+    setFocus();
+}
+
+void Screen::keyPressEvent(QKeyEvent* evt)
+{
+    if(evt->key() != Qt::Key_Escape)
+    {
+        QWidget::keyPressEvent(evt);
+        return;
+    }
+
+    evt->accept();
+    onNewStateActivated({});
 }
 
 void Screen::mouseMoveEvent(QMouseEvent* evt)
@@ -28,6 +41,7 @@ void Screen::mouseMoveEvent(QMouseEvent* evt)
     position /= screenInfos.ratio;
 //    qDebug() << position.toPoint();
     m_mousePosition = utils::PointU(position.toPoint().x(), position.toPoint().y());
+    setFocus();
     update();
 }
 
@@ -130,4 +144,10 @@ void Screen::onNewStateActivated(std::shared_ptr<iState> state)
     emit displayStatusText(QString::fromStdString(state?state->message():""));
     update();
     setMouseTracking((bool)m_currentState);
+
+    if(!m_currentState)
+    {
+        m_mousePosition.reset();
+        emit currentStateCleared();
+    }
 }

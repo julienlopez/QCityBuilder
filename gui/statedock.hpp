@@ -20,6 +20,7 @@ signals:
     void newStateActivated(std::shared_ptr<iState>);
 
 public slots:
+    void clearCurrentState();
 
 private:
     QButtonGroup* m_buildingButtons;

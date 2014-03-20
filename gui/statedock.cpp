@@ -24,6 +24,14 @@ StateDock::StateDock(QWidget* parent_) :
     setWidget(w);
 }
 
+void StateDock::clearCurrentState()
+{
+    auto* b = m_buildingButtons->checkedButton();
+    m_buildingButtons->setExclusive(false);
+    b->setChecked(false);
+    m_buildingButtons->setExclusive(true);
+}
+
 QGroupBox* StateDock::createBuildingGroupBox() const
 {
     auto* gb = new QGroupBox(tr("Buildings"));

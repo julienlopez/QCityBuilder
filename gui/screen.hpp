@@ -22,6 +22,8 @@ public:
     explicit Screen(QWidget* p = 0);
 
 protected:
+    virtual void keyPressEvent(QKeyEvent* evt) override;
+
     virtual void mouseMoveEvent(QMouseEvent* evt) override;
 
     virtual void wheelEvent(QWheelEvent* evt) override;
@@ -50,6 +52,7 @@ private:
     ScreenInfos computeScreenInfos(const World::City& city) const;
 
 signals:
+    void currentStateCleared();
     void displayStatusText(QString);
 
 public slots:
