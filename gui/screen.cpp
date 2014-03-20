@@ -45,6 +45,18 @@ void Screen::mouseMoveEvent(QMouseEvent* evt)
     update();
 }
 
+void Screen::mouseReleaseEvent(QMouseEvent* evt)
+{
+    if(evt->button() != Qt::LeftButton || !m_currentState)
+    {
+        QWidget::mouseReleaseEvent(evt);
+        return;
+    }
+    assert(World::CurrentCityHolder::isInitialized());
+    m_currentState->leftClick(World::CurrentCityHolder::get(), *m_mousePosition);
+    update();
+}
+
 void Screen::wheelEvent(QWheelEvent* evt)
 {
     do_zoom(evt->delta());

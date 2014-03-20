@@ -9,3 +9,8 @@ utils::RectU iState::area(const utils::PointU& pos) const
 {
     return impl_area(pos);
 }
+
+void iState::leftClick(World::City& city, const utils::PointU& pos) const
+{
+    return impl_leftClick(city, pos);
+}

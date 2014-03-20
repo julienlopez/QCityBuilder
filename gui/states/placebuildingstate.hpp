@@ -13,9 +13,13 @@ public:
 private:
     World::BuildingTypeHandler::type_identifier m_id;
 
+    utils::RectU computeRectFromPos(const utils::PointU& pos) const;
+
     virtual std::string impl_message() const override;
 
     virtual utils::RectU impl_area(const utils::PointU& pos) const override;
+
+    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) const override;
 };
 
 #endif // PLACEBUILDINGSTATE_HPP

@@ -7,6 +7,10 @@
 
 #include <string>
 
+namespace World {
+    class City;
+}
+
 class iState : private utils::noncopiable, private utils::nonmovable
 {
 public:
@@ -16,12 +20,16 @@ public:
 
     utils::RectU area(const utils::PointU& pos) const;
 
+    void leftClick(World::City& city, const utils::PointU& pos) const;
+
 protected:
     iState() = default;
 
     virtual std::string impl_message() const = 0;
 
     virtual utils::RectU impl_area(const utils::PointU& pos) const = 0;
+
+    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) const = 0;
 };
 
 #endif // ISTATE_HPP
