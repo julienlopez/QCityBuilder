@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <ressourceshandler.hpp>
 #include <world/buildingtype.hpp>
 #include <world/jsonloader.hpp>
 #include <world/jsonsaver.hpp>

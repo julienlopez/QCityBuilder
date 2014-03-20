@@ -1,7 +1,6 @@
 #ifndef ARRAY2D_HPP
 #define ARRAY2D_HPP
 
-#include "namespace_utils.hpp"
 #include <utils/point.hpp>
 #include "utils/size.hpp"
 
