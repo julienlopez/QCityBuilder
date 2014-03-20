@@ -7,6 +7,8 @@
 
 #include <memory>
 
+#include <boost/optional.hpp>
+
 class iState;
 
 namespace World {
@@ -20,12 +22,14 @@ public:
     explicit Screen(QWidget* p = 0);
 
 protected:
-    virtual void paintEvent(QPaintEvent* evt) override;
+    virtual void mouseMoveEvent(QMouseEvent* evt) override;
 
     virtual void wheelEvent(QWheelEvent* evt) override;
 
+    virtual void paintEvent(QPaintEvent* evt) override;
+
 private:
-    utils::PointU m_mousePosition;
+    boost::optional<utils::PointU> m_mousePosition;
     std::shared_ptr<iState> m_currentState;
 
     double computeZoomToFit(const World::City& city) const;
@@ -35,6 +39,15 @@ private:
     void drawCurrentStateArea(const World::City& city, QPainter& painter) const;
 
     void do_zoom(int delta);
+
+    struct ScreenInfos
+    {
+        double ratio;
+        uint16_t xMargin;
+        uint16_t yMargin;
+    };
+
+    ScreenInfos computeScreenInfos(const World::City& city) const;
 
 signals:
     void displayStatusText(QString);

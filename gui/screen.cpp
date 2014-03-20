@@ -16,6 +16,27 @@ Screen::Screen(QWidget* p): QWidget(p)
 //    setDragMode(QGraphicsView::ScrollHandDrag);
 }
 
+void Screen::mouseMoveEvent(QMouseEvent* evt)
+{
+    if(!World::CurrentCityHolder::isInitialized()) return;
+
+    auto& city = World::CurrentCityHolder::get();
+    QPointF position(evt->pos());
+//    qDebug() << position;
+    auto screenInfos = computeScreenInfos(city);
+    position -= QPoint(screenInfos.xMargin, screenInfos.yMargin);
+    position /= screenInfos.ratio;
+//    qDebug() << position.toPoint();
+    m_mousePosition = utils::PointU(position.toPoint().x(), position.toPoint().y());
+    update();
+}
+
+void Screen::wheelEvent(QWheelEvent* evt)
+{
+    do_zoom(evt->delta());
+    evt->accept();
+}
+
 namespace {
 QColor type2color(World::Map::SquareType type)
 {
@@ -39,9 +60,10 @@ void Screen::paintEvent(QPaintEvent* evt)
 
     assert(World::CurrentCityHolder::isInitialized());
     auto& city = World::CurrentCityHolder::get();
-    double ratio = computeZoomToFit(city);
+    auto screenInfos = computeScreenInfos(city);
+    double ratio = screenInfos.ratio;
 
-    painter.translate((width()-city.map().width()*ratio)/2, (height()-city.map().height()*ratio)/2);
+    painter.translate(screenInfos.xMargin, screenInfos.yMargin);
 
     painter.scale(ratio, ratio);
     drawGround(city, painter);
@@ -75,13 +97,16 @@ void Screen::drawGround(const World::City& city, QPainter& painter) const
 void Screen::drawCurrentStateArea(const World::City& city, QPainter& painter) const
 {
     if(!m_currentState) return;
-    m_currentState->area();
-}
-
-void Screen::wheelEvent(QWheelEvent* evt)
-{
-    do_zoom(evt->delta());
-    evt->accept();
+    if(!m_mousePosition) return;
+//    qDebug() << m_mousePosition->x() << ", " << m_mousePosition->y();
+    auto rect = m_currentState->area(*m_mousePosition);
+//    qDebug() << "{" << rect.topLeft().x() << ", " << rect.topLeft().y() << "}, {" << rect.bottomRight().x() << ", " << rect.bottomRight().y() << "}";
+    auto b = painter.brush();
+    QColor c = Qt::yellow;
+    c.setAlphaF(.6);
+    b.setColor(c);
+    painter.setBrush(b);
+    painter.drawRect(QRectF(QPoint(rect.topLeft().x(), rect.topLeft().y()), QSize(rect.size().width(), rect.size().height())));
 }
 
 void Screen::do_zoom(int delta)
@@ -90,9 +115,19 @@ void Screen::do_zoom(int delta)
 //    scale(zoom, zoom);
 }
 
+auto Screen::computeScreenInfos(const World::City& city) const -> ScreenInfos
+{
+    ScreenInfos res;
+    res.ratio = computeZoomToFit(city);
+    res.xMargin = (width()-city.map().width()*res.ratio)/2;
+    res.yMargin = (height()-city.map().height()*res.ratio)/2;
+    return res;
+}
+
 void Screen::onNewStateActivated(std::shared_ptr<iState> state)
 {
     m_currentState = state;
-    emit displayStatusText(QString::fromStdString(state->message()));
+    emit displayStatusText(QString::fromStdString(state?state->message():""));
     update();
+    setMouseTracking((bool)m_currentState);
 }
