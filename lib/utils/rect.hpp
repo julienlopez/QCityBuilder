@@ -56,8 +56,8 @@ public:
     void for_each(FCT fct) const
     {
         auto bt = bottomRight();
-        for(T x = topLeft().x(); x <= bt.x(); x++)
-            for(T y = topLeft().y(); y <= bt.y(); y++)
+        for(T x = topLeft().x(); x < bt.x(); x++)
+            for(T y = topLeft().y(); y < bt.y(); y++)
                 fct(type_point(x, y));
     }
 
