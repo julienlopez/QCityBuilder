@@ -8,12 +8,14 @@ script: ./tests.sh
 before_install:
   - chmod 755 tests.sh
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo add-apt-repository ppa:ubuntu-sdk-team/ppa -y
+#  - sudo add-apt-repository ppa:apokluda/boost1.53 -y
   - sudo apt-get update -qq
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90; fi
   - sudo apt-get install libgtest-dev
   - sudo apt-get install google-mock
-#  - sudo add-apt-repository ppa:apokluda/boost1.53 -y
+  - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   - sudo apt-get update
 #  - sudo apt-get install libboost1.53-dev libboost-filesystem1.53-dev libboost-program-options1.53-dev
   - chmod 755 ci/build_gtest.sh
