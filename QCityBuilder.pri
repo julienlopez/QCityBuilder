@@ -20,5 +20,7 @@ DESTDIR = $$QCITYBUILDER_BIN
 
 CONFIG += c++11
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
+QMAKE_CXXFLAGS += -std=c++11 -O0 --coverage -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
                     -Wredundant-decls -Wno-long-long -Wuninitialized
+
+LIBS += --coverage

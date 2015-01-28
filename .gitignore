@@ -6,4 +6,11 @@ moc_lib
 moc_gui
 moc_tests
 
-QCityBuilder.pro.user
+cov-html
+app*
+lcov.*
+
+Makefile
+*/Makefile
+
+QCityBuilder.pro.user*
