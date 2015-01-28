@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <world/buildingtypehandler.hpp>
+#include <world/currentcityholder.hpp>
 #include <world/city.hpp>
 #include <world/jsonsaver.hpp>
 #include <world/jsonloader.hpp>
@@ -10,7 +11,7 @@
 using namespace World;
 const std::string strJsonEmptyCity = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
 const std::string strJsonCityWithARoad = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [{\"x\": 3,\"y\": 5},{\"x\": 4,\"y\": 5},{\"x\": 5,\"y\": 5},{\"x\": 6,\"y\": 5}],\"size\": {\"height\": 10,\"width\": 10}}";
-const std::string strJsonCityWithOneBuilding = "{\"buildings\": [{\"entrance\": {\"x\": 5,\"y\": 5},\"rectangle\": {\"size\": {\"height\": 2,\"width\": 3},\"topleft\": {\"x\": 2,\"y\": 2}},\"type\": \"test_building\"}],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
+const std::string strJsonCityWithOneBuilding = "{\"buildings\": [{\"entrance\": {\"x\": 5,\"y\": 5},\"rectangle\": {\"size\": {\"height\": 3,\"width\": 4},\"topleft\": {\"x\": 2,\"y\": 2}},\"type\": \"test_building\"}],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
 
 struct TestCity : public ::testing::Test
 {
@@ -46,7 +47,7 @@ TEST_F(TestCity, loadingCityWithOneBuildingFromJson)
     ASSERT_EQ(1, c.buildings().size());
     const auto& b = c.buildings().front();
     ASSERT_EQ(utils::PointU(5, 5), b.entrance());
-    ASSERT_EQ(utils::RectU(utils::PointU(2, 2), utils::SizeU(3, 2)), b.rectangle());
+    ASSERT_EQ(utils::RectU(utils::PointU(2, 2), utils::SizeU(4, 3)), b.rectangle());
     ASSERT_EQ(BuildingTypeHandler::instance().getByName("test_building"), b.type());
 }
 
@@ -98,4 +99,15 @@ TEST_F(TestCityWithOneBuilding, savingToJson)
     std::ostringstream oss;
     JsonSaver::writeToStream(JsonSaver::saveCity(city), oss);
     ASSERT_EQ(strJsonCityWithOneBuilding, oss.str());
+}
+
+TEST_F(TestCityWithOneBuilding, currentCityHolder)
+{
+    ASSERT_FALSE(CurrentCityHolder::isInitialized());
+    const std::string name = "city1";
+    const utils::SizeU size {50, 50};
+    CurrentCityHolder::initialize(name, size);
+    ASSERT_TRUE(CurrentCityHolder::isInitialized());
+    ASSERT_EQ(name, CurrentCityHolder::get().name());
+    ASSERT_EQ(size, CurrentCityHolder::get().map().size());
 }

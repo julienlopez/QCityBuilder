@@ -16,7 +16,7 @@ public:
     {}
 
     Rect_(type_point topLeft_, type_point bottomRight_): m_topLeft(topLeft_),
-        m_size(bottomRight_.x() - topLeft_.x(), bottomRight_.y() - topLeft_.y())
+        m_size(bottomRight_.x() - topLeft_.x() + 1, bottomRight_.y() - topLeft_.y() + 1)
     {
         assert(bottomRight_.x() > topLeft_.x() && bottomRight_.y() > topLeft_.y());
     }
@@ -38,7 +38,7 @@ public:
 
     type_point bottomRight() const
     {
-        return type_point(m_topLeft.x() + m_size.width(), m_topLeft.y() + m_size.height());
+        return type_point(m_topLeft.x() + m_size.width() - 1, m_topLeft.y() + m_size.height() - 1);
     }
 
     const type_size& size() const
@@ -56,8 +56,8 @@ public:
     void for_each(FCT fct) const
     {
         auto bt = bottomRight();
-        for(T x = topLeft().x(); x < bt.x(); x++)
-            for(T y = topLeft().y(); y < bt.y(); y++)
+        for(T x = topLeft().x(); x <= bt.x(); x++)
+            for(T y = topLeft().y(); y <= bt.y(); y++)
                 fct(type_point(x, y));
     }
 
