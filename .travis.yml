@@ -29,5 +29,7 @@ before_install:
 after_success:
   - lcov --list app.info # debug before upload
   - coveralls-lcov app.info # uploads
-  - cat lcov.log
-  - cat lcov.err
+  - ls -lrth
+  - cat app.info
+#  - cat lcov.log
+#  - cat lcov.err
