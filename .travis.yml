@@ -27,7 +27,7 @@ before_install:
   - gem install coveralls-lcov
 
 after_success:
-  - lcov --list build_tests/app.info # debug before upload
-  - coveralls-lcov build_tests/app.info # uploads
-  - cat build_tests/lcov.log
-  - cat build_tests/lcov.err
+  - lcov --list app.info # debug before upload
+  - coveralls-lcov app.info # uploads
+  - cat lcov.log
+  - cat lcov.err
