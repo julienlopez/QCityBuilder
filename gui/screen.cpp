@@ -128,7 +128,7 @@ void Screen::drawCurrentStateArea(const World::City& city, QPainter& painter) co
     auto rect = m_currentState->area(*m_mousePosition);
 //    qDebug() << "{" << rect.topLeft().x() << ", " << rect.topLeft().y() << "}, {" << rect.bottomRight().x() << ", " << rect.bottomRight().y() << "}";
     auto b = painter.brush();
-    QColor c = Qt::yellow;
+    QColor c = city.isAreaFreeToBuild(rect) ? Qt::yellow : c = Qt::red;
     c.setAlphaF(.6);
     b.setColor(c);
     painter.setBrush(b);

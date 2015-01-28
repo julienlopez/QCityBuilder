@@ -31,4 +31,11 @@ void City::addRoad(Map::square_container_t squares)
     m_map.addRoad(std::move(squares));
 }
 
+bool City::isAreaFreeToBuild(const utils::RectU& area) const
+{
+    bool res = true;
+    area.for_each([&res, this](const utils::PointU& p){ res &= m_map.squareIsEmpty(p); });
+    return res;
+}
+
 END_NAMESPACE_WORLD

@@ -111,3 +111,9 @@ TEST_F(TestCityWithOneBuilding, currentCityHolder)
     ASSERT_EQ(name, CurrentCityHolder::get().name());
     ASSERT_EQ(size, CurrentCityHolder::get().map().size());
 }
+
+TEST_F(TestCityWithOneBuilding, isAreaFreeToBuild)
+{
+    ASSERT_TRUE(city.isAreaFreeToBuild(utils::RectU(utils::PointU(0, 0), utils::PointU(1, 1))));
+    ASSERT_FALSE(city.isAreaFreeToBuild(utils::RectU(utils::PointU(1, 1), utils::PointU(2, 2))));
+}

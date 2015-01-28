@@ -24,5 +24,9 @@ utils::RectU PlaceBuildingState::impl_area(const utils::PointU& pos) const
 
 void PlaceBuildingState::impl_leftClick(World::City& city, const utils::PointU& pos) const
 {
-    city.add(World::Building(m_id, pos, computeRectFromPos(pos)));
+    const auto buildingArea = computeRectFromPos(pos);
+    if(city.isAreaFreeToBuild(buildingArea))
+    {
+        city.add(World::Building(m_id, pos, buildingArea));
+    }
 }

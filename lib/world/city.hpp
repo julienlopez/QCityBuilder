@@ -26,6 +26,8 @@ public:
 
     void addRoad(Map::square_container_t squares);
 
+    bool isAreaFreeToBuild(const utils::RectU& area) const;
+
 private:
     std::string m_name;
     Map m_map;
