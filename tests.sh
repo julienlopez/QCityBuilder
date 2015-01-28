@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OBJ_DIR=$PWD/obj_lib
-QMAKE=qmake-qt5
+QMAKE=qmake
 
 function error_exit
 {
