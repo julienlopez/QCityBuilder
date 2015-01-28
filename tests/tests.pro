@@ -22,4 +22,5 @@ SOURCES += main.cpp \
     testproducer.cpp \
     testmap.cpp \
     testcity.cpp \
-    testbuildingtype.cpp
+    testbuildingtype.cpp \
+    testrect.cpp

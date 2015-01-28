@@ -17,6 +17,7 @@ public:
     ~containerwithidentifier() = default;
 
     using type_identifier = ID;
+    using type_value = T;
 
     bool empty() const
     {

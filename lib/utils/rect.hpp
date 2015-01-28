@@ -28,12 +28,12 @@ public:
 
     type_point topRight() const
     {
-        return type_point(m_topLeft.x() + m_size.width(), m_topLeft.y());
+        return type_point(m_topLeft.x() + m_size.width() - 1, m_topLeft.y());
     }
 
     type_point bottomLeft() const
     {
-        return type_point(m_topLeft.x(), m_topLeft.y() + m_size.height());
+        return type_point(m_topLeft.x(), m_topLeft.y() + m_size.height() - 1);
     }
 
     type_point bottomRight() const
