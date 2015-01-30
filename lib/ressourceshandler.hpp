@@ -16,6 +16,8 @@ public:
 
     using type_container::idOf;
     using type_container::get;
+    using type_container::cbegin;
+    using type_container::cend;
 
     static void loadRessources(const std::vector<std::string>& values);
 

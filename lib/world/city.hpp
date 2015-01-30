@@ -6,6 +6,8 @@
 
 #include <string>
 
+class InventorySummary;
+
 BEGIN_NAMESPACE_WORLD
 
 class City
@@ -27,6 +29,8 @@ public:
     void addRoad(Map::square_container_t squares);
 
     bool isAreaFreeToBuild(const utils::RectU& area) const;
+
+    InventorySummary totalInventory() const;
 
 private:
     std::string m_name;

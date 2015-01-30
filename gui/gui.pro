@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     states/placebuildingstate.cpp \
     states/istate.cpp \
     states/placeroadstate.cpp \
-    buttonplaceroad.cpp
+    buttonplaceroad.cpp \
+    ressourcespanel.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -38,4 +39,5 @@ HEADERS  += mainwindow.hpp \
     states/placebuildingstate.hpp \
     states/istate.hpp \
     states/placeroadstate.hpp \
-    buttonplaceroad.hpp
+    buttonplaceroad.hpp \
+    ressourcespanel.hpp

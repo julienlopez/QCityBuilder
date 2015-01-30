@@ -1,38 +1,35 @@
 #ifndef INVENTORY_HPP
 #define INVENTORY_HPP
 
-#include "ressourceshandler.hpp"
+#include "inventorysummary.hpp"
 
-class Inventory
+class Inventory : private InventorySummary
 {
 public:
-    using identifier = RessourcesHandler::type_identifier;
+    using identifier = InventorySummary::identifier;
 
     Inventory(std::size_t capacity_);
 
-    bool empty() const;
+    using InventorySummary::empty;
 
-    std::size_t count() const;
+    using InventorySummary::count;
 
     void add(identifier id, std::size_t amount_);
 
-    std::size_t amount(identifier id) const;
+    using InventorySummary::amount;
 
     std::size_t capacity() const;
 
     std::size_t spaceAvailable() const;
 
-    std::size_t spaceOccupied() const;
+    using InventorySummary::spaceOccupied;
 
-    void take(identifier id, std::size_t amount_);
+    using InventorySummary::take;
 
-    bool hasEnough(identifier id, std::size_t amount_) const;
+    using InventorySummary::hasEnough;
 
 private:
-    using type_map = std::map<identifier, std::size_t>;
-
     std::size_t m_capacity;
-    type_map m_map;
 };
 
 #endif // INVENTORY_HPP

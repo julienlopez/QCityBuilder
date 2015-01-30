@@ -80,6 +80,16 @@ public:
         return m_map.end();
     }
 
+    const_iterator cbegin() const
+    {
+        return m_map.begin();
+    }
+
+    const_iterator cend() const
+    {
+        return m_map.end();
+    }
+
 private:
     type_map m_map;
 };

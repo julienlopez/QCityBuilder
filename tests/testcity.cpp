@@ -117,3 +117,38 @@ TEST_F(TestCityWithOneBuilding, isAreaFreeToBuild)
     ASSERT_TRUE(city.isAreaFreeToBuild(utils::RectU(utils::PointU(0, 0), utils::PointU(1, 1))));
     ASSERT_FALSE(city.isAreaFreeToBuild(utils::RectU(utils::PointU(1, 1), utils::PointU(2, 2))));
 }
+
+struct TestCityWithTwoBuilding : public TestEmptyCity
+{
+    virtual void SetUp() override
+    {
+        TestEmptyCity::SetUp();
+
+        RessourcesHandler::loadRessources({"wood", "stone", "iron"});
+        idWood = RessourcesHandler::const_instance().idOf("wood");
+        idStone = RessourcesHandler::const_instance().idOf("stone");
+        idIron = RessourcesHandler::const_instance().idOf("iron");
+
+        Building b1(buildingID, utils::PointU(1, 1), utils::RectU(utils::PointU(1, 1), utils::PointU(2, 2)));
+        b1.inventory().add(idWood, 50);
+        b1.inventory().add(idStone, 100);
+        city.add(b1);
+
+        Building b2(buildingID, utils::PointU(4, 4), utils::RectU(utils::PointU(3, 3), utils::PointU(4, 4)));
+        b2.inventory().add(idStone, 100);
+        b2.inventory().add(idIron, 100);
+        city.add(b2);
+    }
+
+    RessourcesHandler::type_identifier idWood;
+    RessourcesHandler::type_identifier idStone;
+    RessourcesHandler::type_identifier idIron;
+};
+
+TEST_F(TestCityWithTwoBuilding, testTotalInventory)
+{
+    auto summary = city.totalInventory();
+    EXPECT_EQ(summary.amount(idWood), 50);
+    EXPECT_EQ(summary.amount(idStone), 200);
+    EXPECT_EQ(summary.amount(idIron), 100);
+}

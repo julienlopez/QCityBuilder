@@ -21,7 +21,8 @@ SOURCES += \
     world/buildingtype.cpp \
     world/buildingtypehandler.cpp \
     guihelper.cpp \
-    ressourceshandler.cpp
+    ressourceshandler.cpp \
+    inventorysummary.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -51,4 +52,5 @@ HEADERS  += \
     world/currentcityholder.hpp \
     world/buildingtype.hpp \
     world/buildingtypehandler.hpp \
-    guihelper.hpp
+    guihelper.hpp \
+    inventorysummary.hpp
