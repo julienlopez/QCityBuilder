@@ -4,3 +4,4 @@ rm app app.info
 rm -rf cov-html/*
 rm -rf moc_*
 rm -rf obj_*
+rm Makefile */Makefile

@@ -1,4 +1,6 @@
-bin
+bin/*
+!bin/*.json
+
 obj_lib
 obj_gui
 obj_tests
