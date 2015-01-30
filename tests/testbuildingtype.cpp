@@ -10,7 +10,16 @@ using namespace World;
 const std::string strJsonBuildingTypeNoRequirements = "{\"name\": \"test_building\",\"requirements\": [],\"size\": {\"height\": 5,\"width\": 10}}";
 const std::string strJsonBuildingType = "{\"name\": \"test_building\",\"requirements\": [{\"amount\": 10,\"name\": \"wood\"},{\"amount\": 20,\"name\": \"stone\"}],\"size\": {\"height\": 5,\"width\": 10}}";
 
-TEST(TestBuildingType, loadingBuildingTypeNoRequirementsFromJson)
+struct TestBuildingType : public ::testing::Test
+{
+public:
+    virtual void SetUp() override
+    {
+        RessourcesHandler::clear();
+    }
+};
+
+TEST_F(TestBuildingType, loadingBuildingTypeNoRequirementsFromJson)
 {
     auto bt = JsonLoader::parseBuildingType(JsonLoader::stringToJsonObject(strJsonBuildingTypeNoRequirements));
     ASSERT_EQ("test_building", bt.name);
@@ -18,7 +27,7 @@ TEST(TestBuildingType, loadingBuildingTypeNoRequirementsFromJson)
     ASSERT_TRUE(bt.requirements.empty());
 }
 
-TEST(TestBuildingType, savingBuildingTypeNoRequirementsToJson)
+TEST_F(TestBuildingType, savingBuildingTypeNoRequirementsToJson)
 {
     BuildingType bt = {"test_building", utils::SizeU(10, 5), {}};
     std::ostringstream oss;
@@ -26,11 +35,12 @@ TEST(TestBuildingType, savingBuildingTypeNoRequirementsToJson)
     ASSERT_EQ(strJsonBuildingTypeNoRequirements, oss.str());
 }
 
-TEST(TestBuildingType, loadingBuildingTypeFromJson)
+TEST_F(TestBuildingType, loadingBuildingTypeFromJson)
 {
-    auto idWood = RessourcesHandler::instance().add("wood");
-    auto idStone = RessourcesHandler::instance().add("stone");
-    auto bt = JsonLoader::parseBuildingType(JsonLoader::stringToJsonObject(strJsonBuildingType));
+    RessourcesHandler::loadRessources({"wood", "stone"});
+    const auto idWood = RessourcesHandler::const_instance().idOf("wood");
+    const auto idStone = RessourcesHandler::const_instance().idOf("stone");
+    const auto bt = JsonLoader::parseBuildingType(JsonLoader::stringToJsonObject(strJsonBuildingType));
     ASSERT_EQ("test_building", bt.name);
     ASSERT_EQ(utils::SizeU(10, 5), bt.size);
     ASSERT_EQ(2, bt.requirements.size());
@@ -44,11 +54,12 @@ TEST(TestBuildingType, loadingBuildingTypeFromJson)
     ASSERT_EQ(it->second, 20);
 }
 
-TEST(TestBuildingType, savingBuildingTypeToJson)
+TEST_F(TestBuildingType, savingBuildingTypeToJson)
 {
-    auto idWood = RessourcesHandler::instance().add("wood");
-    auto idStone = RessourcesHandler::instance().add("stone");
-    BuildingType bt = {"test_building", utils::SizeU(10, 5), {{idWood, 10}, {idStone, 20}}};
+    RessourcesHandler::loadRessources({"wood", "stone"});
+    const auto idWood = RessourcesHandler::const_instance().idOf("wood");
+    const auto idStone = RessourcesHandler::const_instance().idOf("stone");
+    const BuildingType bt = {"test_building", utils::SizeU(10, 5), {{idWood, 10}, {idStone, 20}}};
     std::ostringstream oss;
     JsonSaver::writeToStream(JsonSaver::saveBuildingType(bt), oss);
     ASSERT_EQ(strJsonBuildingType, oss.str());

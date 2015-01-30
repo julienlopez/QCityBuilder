@@ -66,7 +66,7 @@ QJsonObject JsonSaver::saveBuildingType(const BuildingType& buildingtype)
     for(const auto& p : buildingtype.requirements)
     {
         QJsonObject o;
-        o.insert("name", QString::fromStdString(RessourcesHandler::instance().get(p.first)));
+        o.insert("name", QString::fromStdString(RessourcesHandler::const_instance().get(p.first)));
         o.insert("amount", (double)p.second);
         requirements.insert(i++, o);
     }

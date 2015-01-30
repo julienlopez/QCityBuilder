@@ -20,7 +20,8 @@ SOURCES += \
     world/currentcityholder.cpp \
     world/buildingtype.cpp \
     world/buildingtypehandler.cpp \
-    guihelper.cpp
+    guihelper.cpp \
+    ressourceshandler.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \

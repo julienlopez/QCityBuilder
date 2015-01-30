@@ -24,6 +24,11 @@ public:
         return m_map.empty();
     }
 
+    void clear()
+    {
+        m_map.clear();
+    }
+
     ID add(T t)
     {
         ID id = 0;

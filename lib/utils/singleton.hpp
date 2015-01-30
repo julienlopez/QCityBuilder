@@ -6,11 +6,18 @@
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class singleton : private noncopiable, private nonmovable {
+template<class T> class singleton : private noncopiable, private nonmovable
+{
 public:
-    static T& instance() {
+    static T& instance()
+    {
         static T i;
         return i;
+    }
+
+    static const T& const_instance()
+    {
+        return instance();
     }
 
 protected:

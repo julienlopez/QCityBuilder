@@ -32,7 +32,7 @@ void loadBuildingTypesFromFile(QString fileName)
         World::BuildingTypeHandler::instance().add(World::JsonLoader::parseBuildingType(o.toObject()));
     }
 }
-#include <QDebug>
+
 void loadRessourcesFromFile(QString fileName)
 {
     fileName = QDir(QApplication::applicationDirPath()).filePath(fileName);
@@ -43,12 +43,9 @@ void loadRessourcesFromFile(QString fileName)
     QTextStream stream(&f);
     QString json = stream.readAll();
     auto array = World::JsonLoader::stringToJsonArray(json.toStdString());
-    for(const auto& o : array)
-    {
-        const auto ressource = o.toString().toStdString();
-        const auto id = RessourcesHandler::instance().add(ressource);
-        qDebug() << "added ressource " << id << " = " << QString::fromStdString(ressource);
-    }
+    std::vector<std::string> ressources(array.size());
+    std::transform(array.begin(), array.end(), ressources.begin(), [&ressources](const QJsonValue& value){ return value.toString().toStdString(); });
+    RessourcesHandler::loadRessources(ressources);
 }
 
 int main(int argc, char *argv[])
