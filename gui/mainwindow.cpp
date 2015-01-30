@@ -16,11 +16,6 @@ MainWindow::MainWindow(QWidget* p): QMainWindow(p)
     connect(screen, &Screen::currentStateCleared, stateDock, &StateDock::clearCurrentState);
 }
 
-MainWindow::~MainWindow()
-{
-
-}
-
 void MainWindow::onDisplayStatusText(QString text)
 {
     statusBar()->showMessage(text);

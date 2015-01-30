@@ -4,6 +4,8 @@
 #include "point.hpp"
 #include "size.hpp"
 
+#include <cassert>
+
 BEGIN_NAMESPACE_UTILS
 
 template<class T> class Rect_

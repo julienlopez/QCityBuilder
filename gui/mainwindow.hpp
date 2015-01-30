@@ -9,7 +9,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget* p = 0);
-    ~MainWindow();
+    virtual ~MainWindow() = default;
 
 private slots:
     void onDisplayStatusText(QString text);
