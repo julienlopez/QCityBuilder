@@ -1,7 +1,7 @@
 #include "mainwindow.hpp"
 #include "screen.hpp"
 #include "statedock.hpp"
-#include "ressourcespanel.hpp"
+#include "resourcespanel.hpp"
 
 #include <QStatusBar>
 
@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget* p): QMainWindow(p)
     setCentralWidget(screen);
     screen->setMinimumSize(800, 600);
 
-    auto* ressourcesDock = new RessourcesPanel;
-    addDockWidget(Qt::TopDockWidgetArea, ressourcesDock);
+    auto* resourcesDock = new ResourcesPanel;
+    addDockWidget(Qt::TopDockWidgetArea, resourcesDock);
 
     auto* stateDock = new StateDock;
     addDockWidget(Qt::RightDockWidgetArea, stateDock);

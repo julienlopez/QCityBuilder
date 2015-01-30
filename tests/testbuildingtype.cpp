@@ -15,7 +15,7 @@ struct TestBuildingType : public ::testing::Test
 public:
     virtual void SetUp() override
     {
-        RessourcesHandler::clear();
+        ResourcesHandler::clear();
     }
 };
 
@@ -37,9 +37,9 @@ TEST_F(TestBuildingType, savingBuildingTypeNoRequirementsToJson)
 
 TEST_F(TestBuildingType, loadingBuildingTypeFromJson)
 {
-    RessourcesHandler::loadRessources({"wood", "stone"});
-    const auto idWood = RessourcesHandler::const_instance().idOf("wood");
-    const auto idStone = RessourcesHandler::const_instance().idOf("stone");
+    ResourcesHandler::loadResources({"wood", "stone"});
+    const auto idWood = ResourcesHandler::const_instance().idOf("wood");
+    const auto idStone = ResourcesHandler::const_instance().idOf("stone");
     const auto bt = JsonLoader::parseBuildingType(JsonLoader::stringToJsonObject(strJsonBuildingType));
     ASSERT_EQ("test_building", bt.name);
     ASSERT_EQ(utils::SizeU(10, 5), bt.size);
@@ -56,9 +56,9 @@ TEST_F(TestBuildingType, loadingBuildingTypeFromJson)
 
 TEST_F(TestBuildingType, savingBuildingTypeToJson)
 {
-    RessourcesHandler::loadRessources({"wood", "stone"});
-    const auto idWood = RessourcesHandler::const_instance().idOf("wood");
-    const auto idStone = RessourcesHandler::const_instance().idOf("stone");
+    ResourcesHandler::loadResources({"wood", "stone"});
+    const auto idWood = ResourcesHandler::const_instance().idOf("wood");
+    const auto idStone = ResourcesHandler::const_instance().idOf("stone");
     const BuildingType bt = {"test_building", utils::SizeU(10, 5), {{idWood, 10}, {idStone, 20}}};
     std::ostringstream oss;
     JsonSaver::writeToStream(JsonSaver::saveBuildingType(bt), oss);

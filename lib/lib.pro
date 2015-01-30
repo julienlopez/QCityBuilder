@@ -21,8 +21,8 @@ SOURCES += \
     world/buildingtype.cpp \
     world/buildingtypehandler.cpp \
     guihelper.cpp \
-    ressourceshandler.cpp \
-    inventorysummary.cpp
+    inventorysummary.cpp \
+    resourceshandler.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -34,7 +34,6 @@ HEADERS  += \
     utils/singleton.hpp \
     utils/uniquecontainerwithname.hpp \
     utils/containerwithidentifier.hpp \
-    ressourceshandler.hpp \
     inventory.hpp \
     utils/nonmovable.hpp \
     utils/deep_ptr.hpp \
@@ -53,4 +52,5 @@ HEADERS  += \
     world/buildingtype.hpp \
     world/buildingtypehandler.hpp \
     guihelper.hpp \
-    inventorysummary.hpp
+    inventorysummary.hpp \
+    resourceshandler.hpp

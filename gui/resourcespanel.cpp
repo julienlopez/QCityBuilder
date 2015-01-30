@@ -1,4 +1,4 @@
-#include "ressourcespanel.hpp"
+#include "resourcespanel.hpp"
 
 #include <inventorysummary.hpp>
 #include <world/currentcityholder.hpp>
@@ -7,7 +7,7 @@
 #include <QGridLayout>
 #include <QApplication>
 
-RessourcesPanel::RessourcesPanel(QWidget* parent_): QDockWidget(parent_)
+ResourcesPanel::ResourcesPanel(QWidget* parent_): QDockWidget(parent_)
 {
     auto* w = new QWidget;
     auto* lay = new QGridLayout;
@@ -15,7 +15,7 @@ RessourcesPanel::RessourcesPanel(QWidget* parent_): QDockWidget(parent_)
     const auto& city = World::CurrentCityHolder::const_instance().get();
     auto inv = city.totalInventory();
 
-    const auto& instance = RessourcesHandler::const_instance();
+    const auto& instance = ResourcesHandler::const_instance();
     std::size_t cpt = 0;
     for(auto it = instance.cbegin(); it != instance.cend(); ++it, cpt+=2)
     {

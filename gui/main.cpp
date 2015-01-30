@@ -2,7 +2,7 @@
 
 #include <world/currentcityholder.hpp>
 #include <world/jsonloader.hpp>
-#include <ressourceshandler.hpp>
+#include <resourceshandler.hpp>
 
 #include <QApplication>
 #include <QDir>
@@ -33,7 +33,7 @@ void loadBuildingTypesFromFile(QString fileName)
     }
 }
 
-void loadRessourcesFromFile(QString fileName)
+void loadResourcesFromFile(QString fileName)
 {
     fileName = QDir(QApplication::applicationDirPath()).filePath(fileName);
     assert(QFile::exists(fileName));
@@ -45,7 +45,7 @@ void loadRessourcesFromFile(QString fileName)
     auto array = World::JsonLoader::stringToJsonArray(json.toStdString());
     std::vector<std::string> ressources(array.size());
     std::transform(array.begin(), array.end(), ressources.begin(), [&ressources](const QJsonValue& value){ return value.toString().toStdString(); });
-    RessourcesHandler::loadRessources(ressources);
+    ResourcesHandler::loadResources(ressources);
 }
 
 int main(int argc, char *argv[])
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     loadBuildingTypesFromFile("buildings.json");
-    loadRessourcesFromFile("ressources.json");
+    loadResourcesFromFile("ressources.json");
     loadTestCity();
 
     MainWindow w;

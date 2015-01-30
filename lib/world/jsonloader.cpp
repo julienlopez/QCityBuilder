@@ -78,7 +78,7 @@ BuildingType JsonLoader::parseBuildingType(const QJsonObject& object)
         std::string pairName = findString(o, "name");
         std::size_t pairAmount = findDouble(o, "amount");
 
-        auto id = RessourcesHandler::const_instance().idOf(pairName);
+        auto id = ResourcesHandler::const_instance().idOf(pairName);
         requirements.insert(std::make_pair(id, pairAmount));
     }
 

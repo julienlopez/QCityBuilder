@@ -123,11 +123,12 @@ struct TestCityWithTwoBuilding : public TestEmptyCity
     virtual void SetUp() override
     {
         TestEmptyCity::SetUp();
+        ResourcesHandler::clear();
 
-        RessourcesHandler::loadRessources({"wood", "stone", "iron"});
-        idWood = RessourcesHandler::const_instance().idOf("wood");
-        idStone = RessourcesHandler::const_instance().idOf("stone");
-        idIron = RessourcesHandler::const_instance().idOf("iron");
+        ResourcesHandler::loadResources({"wood", "stone", "iron"});
+        idWood = ResourcesHandler::const_instance().idOf("wood");
+        idStone = ResourcesHandler::const_instance().idOf("stone");
+        idIron = ResourcesHandler::const_instance().idOf("iron");
 
         Building b1(buildingID, utils::PointU(1, 1), utils::RectU(utils::PointU(1, 1), utils::PointU(2, 2)));
         b1.inventory().add(idWood, 50);
@@ -140,9 +141,9 @@ struct TestCityWithTwoBuilding : public TestEmptyCity
         city.add(b2);
     }
 
-    RessourcesHandler::type_identifier idWood;
-    RessourcesHandler::type_identifier idStone;
-    RessourcesHandler::type_identifier idIron;
+    ResourcesHandler::type_identifier idWood;
+    ResourcesHandler::type_identifier idStone;
+    ResourcesHandler::type_identifier idIron;
 };
 
 TEST_F(TestCityWithTwoBuilding, testTotalInventory)

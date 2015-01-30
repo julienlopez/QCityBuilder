@@ -1,14 +1,14 @@
 #ifndef INVENTORYSUMMARY_HPP
 #define INVENTORYSUMMARY_HPP
 
-#include "ressourceshandler.hpp"
+#include "resourceshandler.hpp"
 
 class Inventory;
 
 class InventorySummary
 {
 public:
-    using identifier = RessourcesHandler::type_identifier;
+    using identifier = ResourcesHandler::type_identifier;
 
     InventorySummary() = default;
 

@@ -1,14 +1,14 @@
 #ifndef PRODUCTION_HPP
 #define PRODUCTION_HPP
 
-#include "ressourceshandler.hpp"
+#include "resourceshandler.hpp"
 
 #include <vector>
 
 class Production
 {
 public:
-    using identifier = RessourcesHandler::type_identifier;
+    using identifier = ResourcesHandler::type_identifier;
     using pair_identifier_amount = std::pair<identifier, std::size_t>;
     using container_pairs_identifier_amount = std::vector<pair_identifier_amount>;
 

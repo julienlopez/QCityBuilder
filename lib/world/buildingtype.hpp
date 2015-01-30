@@ -4,7 +4,7 @@
 #include <utils/noncopiable.hpp>
 #include <utils/size.hpp>
 
-#include <ressourceshandler.hpp>
+#include <resourceshandler.hpp>
 
 #include "namespace_world.hpp"
 
@@ -14,7 +14,7 @@ BEGIN_NAMESPACE_WORLD
 
 struct BuildingType : private utils::noncopiable
 {
-    using requirements_map_t = std::map<RessourcesHandler::type_identifier, std::size_t>;
+    using requirements_map_t = std::map<ResourcesHandler::type_identifier, std::size_t>;
 
     BuildingType(std::string name_, utils::SizeU size_, requirements_map_t requirements_);
 

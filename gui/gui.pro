@@ -30,7 +30,7 @@ SOURCES += main.cpp\
     states/istate.cpp \
     states/placeroadstate.cpp \
     buttonplaceroad.cpp \
-    ressourcespanel.cpp
+    resourcespanel.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
@@ -40,4 +40,4 @@ HEADERS  += mainwindow.hpp \
     states/istate.hpp \
     states/placeroadstate.hpp \
     buttonplaceroad.hpp \
-    ressourcespanel.hpp
+    resourcespanel.hpp

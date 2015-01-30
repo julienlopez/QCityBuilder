@@ -1,6 +1,6 @@
-#include "ressourceshandler.hpp"
+#include "resourceshandler.hpp"
 
-void RessourcesHandler::loadRessources(const std::vector<std::string>& values)
+void ResourcesHandler::loadResources(const std::vector<std::string>& values)
 {
     auto& inst = instance();
     assert(inst.empty());
@@ -8,7 +8,7 @@ void RessourcesHandler::loadRessources(const std::vector<std::string>& values)
         inst.add(value);
 }
 
-void RessourcesHandler::clear()
+void ResourcesHandler::clear()
 {
     instance().type_container::clear();
 }
