@@ -40,6 +40,19 @@ bool operator==(const Point_<T>& p1, const Point_<U>& p2)
     return p1.x() == p2.x() && p1.y() == p2.y();
 }
 
+template<class T, class U>
+Point_<T> operator+(const Point_<T>& p1, const Point_<U>& p2)
+{
+    return { p1.x() + p2.x(), p1.y() + p2.y() };
+}
+
+template<class T, class U>
+Point_<T> operator-(const Point_<T>& p1, const Point_<U>& p2)
+{
+    assert(p1.x() >= p2.x() && p1.y() >= p2.y());
+    return { p1.x() - p2.x(), p1.y() - p2.y() };
+}
+
 using Point = Point_<int>;
 using PointU = Point_<std::size_t>;
 using PointF = Point_<double>;

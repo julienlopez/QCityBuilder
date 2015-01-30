@@ -23,4 +23,5 @@ SOURCES += main.cpp \
     testmap.cpp \
     testcity.cpp \
     testbuildingtype.cpp \
-    testrect.cpp
+    testrect.cpp \
+    testguihelper.cpp

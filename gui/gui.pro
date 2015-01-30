@@ -27,11 +27,15 @@ SOURCES += main.cpp\
     statedock.cpp \
     buttonplacebuilding.cpp \
     states/placebuildingstate.cpp \
-    states/istate.cpp
+    states/istate.cpp \
+    states/placeroadstate.cpp \
+    buttonplaceroad.cpp
 
 HEADERS  += mainwindow.hpp \
     screen.hpp \
     statedock.hpp \
     buttonplacebuilding.hpp \
     states/placebuildingstate.hpp \
-    states/istate.hpp
+    states/istate.hpp \
+    states/placeroadstate.hpp \
+    buttonplaceroad.hpp

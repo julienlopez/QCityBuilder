@@ -19,7 +19,8 @@ SOURCES += \
     world/jsonsaver.cpp \
     world/currentcityholder.cpp \
     world/buildingtype.cpp \
-    world/buildingtypehandler.cpp
+    world/buildingtypehandler.cpp \
+    guihelper.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -48,4 +49,5 @@ HEADERS  += \
     world/jsonsaver.hpp \
     world/currentcityholder.hpp \
     world/buildingtype.hpp \
-    world/buildingtypehandler.hpp
+    world/buildingtypehandler.hpp \
+    guihelper.hpp

@@ -20,7 +20,7 @@ public:
 
     utils::RectU area(const utils::PointU& pos) const;
 
-    void leftClick(World::City& city, const utils::PointU& pos) const;
+    void leftClick(World::City& city, const utils::PointU& pos);
 
 protected:
     iState() = default;
@@ -29,7 +29,7 @@ protected:
 
     virtual utils::RectU impl_area(const utils::PointU& pos) const = 0;
 
-    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) const = 0;
+    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) = 0;
 };
 
 #endif // ISTATE_HPP

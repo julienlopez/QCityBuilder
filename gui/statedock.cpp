@@ -1,5 +1,6 @@
 #include "statedock.hpp"
 #include "buttonplacebuilding.hpp"
+#include "buttonplaceroad.hpp"
 
 #include <QVBoxLayout>
 #include <QGroupBox>
@@ -16,6 +17,7 @@ StateDock::StateDock(QWidget* parent_) :
     auto* vl = new QVBoxLayout;
 
     vl->addWidget(createBuildingGroupBox());
+    vl->addWidget(createUtilsGroupBox());
 
     vl->addStretch();
 
@@ -46,6 +48,21 @@ QGroupBox* StateDock::createBuildingGroupBox() const
         gl->addWidget(b, i/3, i%3);
         ++i;
     }
+
+    gb->setLayout(gl);
+    return gb;
+}
+
+QGroupBox* StateDock::createUtilsGroupBox() const
+{
+    auto* gb = new QGroupBox(tr("Utilities"));
+    auto* gl = new QGridLayout;
+
+    int i = 0;
+    auto* b = new ButtonPlaceRoad;
+    connect(b, &ButtonPlaceRoad::activated, this, &StateDock::newStateActivated);
+    m_buildingButtons->addButton(b);
+    gl->addWidget(b, i/3, i%3);
 
     gb->setLayout(gl);
     return gb;

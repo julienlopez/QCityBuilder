@@ -26,6 +26,7 @@ private:
     QButtonGroup* m_buildingButtons;
 
     QGroupBox* createBuildingGroupBox() const;
+    QGroupBox* createUtilsGroupBox() const;
 
 };
 

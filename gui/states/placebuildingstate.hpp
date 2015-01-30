@@ -19,7 +19,7 @@ private:
 
     virtual utils::RectU impl_area(const utils::PointU& pos) const override;
 
-    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) const override;
+    virtual void impl_leftClick(World::City& city, const utils::PointU& pos) override;
 };
 
 #endif // PLACEBUILDINGSTATE_HPP

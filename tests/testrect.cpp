@@ -2,22 +2,6 @@
 
 #include <utils/rect.hpp>
 
-namespace utils {
-
-::std::ostream& operator<<(::std::ostream& o, const utils::PointU& p)
-{
-    o << '{' << p.x() << ", " << p.y() << '}';
-    return o;
-}
-
-::std::ostream& operator<<(::std::ostream& o, const utils::RectU& p)
-{
-    o << '{' << p.topLeft() << ", " << p.bottomRight() << "} : (" << p.size().width() << "x" << p.size().height() << ')';
-    return o;
-}
-
-}
-
 TEST(TestRect, ConstructionWithTwoPoints)
 {
     const utils::PointU topLeft(1, 1);
