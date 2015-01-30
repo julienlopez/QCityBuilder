@@ -125,14 +125,14 @@ void Screen::drawCurrentStateArea(const World::City& city, QPainter& painter) co
     if(!m_currentState) return;
     if(!m_mousePosition) return;
 //    qDebug() << m_mousePosition->x() << ", " << m_mousePosition->y();
-    auto rect = m_currentState->area(*m_mousePosition);
+    auto area = m_currentState->area(*m_mousePosition);
 //    qDebug() << "{" << rect.topLeft().x() << ", " << rect.topLeft().y() << "}, {" << rect.bottomRight().x() << ", " << rect.bottomRight().y() << "}";
     auto b = painter.brush();
-    QColor c = city.isAreaFreeToBuild(rect) ? Qt::yellow : c = Qt::red;
+    QColor c = city.isAreaFreeToBuild(area) ? Qt::yellow : c = Qt::red;
     c.setAlphaF(.6);
     b.setColor(c);
     painter.setBrush(b);
-    painter.drawRect(QRectF(QPoint(rect.topLeft().x(), rect.topLeft().y()), QSize(rect.size().width(), rect.size().height())));
+    painter.drawRect(QRectF(QPoint(area.topLeft().x(), area.topLeft().y()), QSize(area.size().width(), area.size().height())));
 }
 
 void Screen::do_zoom(int delta)
