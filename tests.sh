@@ -15,18 +15,18 @@ $QMAKE "COVERAGE=1" && make VERBOSE=1
 
 [ $? -ne 0 ] && error_exit "Compile step failed."
 
-lcov --zerocounters $DIR_OPTIONS --no-external #> lcov.log 2> lcov.err
-lcov --capture --initial $DIR_OPTIONS --no-external --output-file app.baseline #>> lcov.log 2>> lcov.err
+lcov --zerocounters $DIR_OPTIONS #> lcov.log 2> lcov.err
+lcov --capture --initial $DIR_OPTIONS --output-file app.baseline #>> lcov.log 2>> lcov.err
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/bin/
 bin/tests
 
-echo "analyzing coverage data...: lcov --no-checksum $DIR_OPTIONS --no-external --capture --output-file app"
-lcov --no-checksum $DIR_OPTIONS --no-external --capture --output-file app #>> lcov.log 2>> lcov.err
-#lcov --no-checksum $DIR_OPTIONS --no-external --capture --output-file app.info
+echo "analyzing coverage data...: lcov --no-checksum $DIR_OPTIONS --capture --output-file app"
+lcov --no-checksum $DIR_OPTIONS --capture --output-file app #>> lcov.log 2>> lcov.err
+#lcov --no-checksum $DIR_OPTIONS --capture --output-file app.info
 
 echo "merging datas"
-lcov --add-tracefile app.baseline --add-tracefile app --no-external --output-file app.info
+lcov --add-tracefile app.baseline --add-tracefile app --output-file app.info
 
 echo "removing useless data"
 lcov --remove app.info "/usr*" --output-file app.info
