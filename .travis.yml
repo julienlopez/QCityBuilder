@@ -32,6 +32,8 @@ matrix:
 
 before_install:
   - eval "${MATRIX_EVAL}"
+  - echo $CC
+  - echo $CXX
   - g++ -v
   - g++-7 -v
   - chmod 755 tests.sh
