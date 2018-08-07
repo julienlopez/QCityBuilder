@@ -32,6 +32,10 @@ matrix:
 
 before_install:
   - eval "${MATRIX_EVAL}"
+  - sudo update-alternatives --remove-all gcc 
+  - sudo update-alternatives --remove-all g++
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 10
   - update-alternatives --set gcc "/usr/bin/gcc-7"
   - update-alternatives --set g++ "/usr/bin/g++-7"
   - echo $CC
