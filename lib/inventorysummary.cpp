@@ -2,6 +2,8 @@
 #include "inventory.hpp"
 
 #include <algorithm>
+#include <numeric>
+#include <string>
 
 InventorySummary& InventorySummary::operator+=(const Inventory& inventory)
 {

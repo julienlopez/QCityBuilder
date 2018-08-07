@@ -2,11 +2,10 @@
 #define SINGLETON_HPP
 
 #include <utils/noncopiable.hpp>
-#include <utils/nonmovable.hpp>
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class singleton : private noncopiable, private nonmovable
+template<class T> class singleton : private noncopiable
 {
 public:
     static T& instance()

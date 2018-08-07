@@ -1,8 +1,6 @@
 #ifndef ISTATE_HPP
 #define ISTATE_HPP
 
-#include <utils/noncopiable.hpp>
-#include <utils/nonmovable.hpp>
 #include <utils/rect.hpp>
 
 #include <string>
@@ -11,10 +9,16 @@ namespace World {
     class City;
 }
 
-class iState : private utils::noncopiable, private utils::nonmovable
+class iState
 {
 public:
     virtual ~iState() = default;
+
+    iState(const iState&) = delete;
+    iState(iState&&) = delete;
+
+    iState& operator=(const iState&) = delete;
+    iState& operator=(iState&&) = delete;
 
     std::string message() const;
 

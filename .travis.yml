@@ -2,17 +2,29 @@ language: cpp
 
 compiler:
   - gcc
+  
+matrix:
+  include:
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
+before_install:
+    - eval "${MATRIX_EVAL}"
+	
 script: ./tests.sh
 
 before_install:
+  - g++ -v
   - chmod 755 tests.sh
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo add-apt-repository ppa:ubuntu-sdk-team/ppa -y
-  # - sudo add-apt-repository ppa:apokluda/boost1.53 -y
   - sudo apt-get update -qq
-  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
-  - if [ "$CXX" = "g++" ]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90; fi
   - sudo apt-get install libgtest-dev google-mock cmake
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
   - sudo apt-get update

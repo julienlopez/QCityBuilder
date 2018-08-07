@@ -35,8 +35,6 @@ HEADERS  += \
     utils/uniquecontainerwithname.hpp \
     utils/containerwithidentifier.hpp \
     inventory.hpp \
-    utils/nonmovable.hpp \
-    utils/deep_ptr.hpp \
     producer.hpp \
     production.hpp \
     world/map.hpp \

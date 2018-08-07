@@ -18,7 +18,6 @@ MOC_DIR= $$QCITYBUILDER_MOC_TESTS
 SOURCES += main.cpp \
     testcontainerwithidentifier.cpp \
     testinventory.cpp \
-    testdeep_ptr.cpp \
     testproducer.cpp \
     testmap.cpp \
     testcity.cpp \
