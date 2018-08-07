@@ -18,6 +18,9 @@ $QMAKE "COVERAGE=1" && make CXX=g++-7 VERBOSE=1 tests
 lcov --zerocounters $DIR_OPTIONS #> lcov.log 2> lcov.err
 lcov --capture --initial $DIR_OPTIONS --output-file app.baseline #>> lcov.log 2>> lcov.err
 
+echo $PWD
+ls . -l
+
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/bin/
 bin/tests
 
