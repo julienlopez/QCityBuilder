@@ -32,9 +32,13 @@ matrix:
 
 before_install:
   - eval "${MATRIX_EVAL}"
+  - update-alternatives --set gcc "/usr/bin/gcc-7"
+  - update-alternatives --set g++ "/usr/bin/g++-7"
   - echo $CC
   - echo $CXX
   - echo $LD
+  - g++ -v
+  - g++-7 -v
   - chmod 755 tests.sh
   - sudo apt-get update -qq
   # - sudo apt-get install cmake
