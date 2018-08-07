@@ -4,13 +4,12 @@ TARGET = tests
 TEMPLATE = app
 
 include (../QCityBuilder.pri)
-include (../gtest.pri)
-include (../gmock.pri)
 
 LIBS += -L$$QCITYBUILDER_BIN
 LIBS += -lQCityBuilder
 
 INCLUDEPATH += $$QCITYBUILDER_LIB
+INCLUDEPATH += $$QCITYBUILDER_ROOT/3rd_party/catch
 
 OBJECTS_DIR = $$QCITYBUILDER_OBJ_TESTS
 MOC_DIR= $$QCITYBUILDER_MOC_TESTS

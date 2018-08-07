@@ -34,12 +34,10 @@ before_install:
   - g++ -v
   - chmod 755 tests.sh
   - sudo apt-get update -qq
-  - sudo apt-get install libgtest-dev cmake
+  - sudo apt-get install cmake
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
-  - sudo apt-get update
   - sudo apt-get install libboost-dev
-  - chmod 755 ci/build_gtest.sh
-  - sudo ci/build_gtest.sh
+  - sudo apt-get update
   - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
   - tar xf lcov_1.11.orig.tar.gz
   - sudo make -C lcov-1.11/ install
