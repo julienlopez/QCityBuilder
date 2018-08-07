@@ -21,7 +21,7 @@ before_install:
   - sudo make -C lcov-1.11/ install
   # Codecov
   - sudo pip install codecov
-	
+
 script: ./tests.sh
 
 after_success:
