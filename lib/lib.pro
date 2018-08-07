@@ -2,6 +2,7 @@ QT -= gui widgets
 
 TARGET = QCityBuilder
 TEMPLATE = lib
+CONFIG += staticlib
 
 include (../QCityBuilder.pri)
 

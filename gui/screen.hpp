@@ -7,7 +7,7 @@
 
 #include <memory>
 
-#include <boost/optional.hpp>
+#include <optional>
 
 class iState;
 
@@ -33,7 +33,7 @@ protected:
     virtual void paintEvent(QPaintEvent* evt) override;
 
 private:
-    boost::optional<utils::PointU> m_mousePosition;
+    std::optional<utils::PointU> m_mousePosition;
     std::shared_ptr<iState> m_currentState;
 
     double computeZoomToFit(const World::City& city) const;

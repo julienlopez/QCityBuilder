@@ -3,7 +3,7 @@
 
 #include "istate.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 
 class PlaceRoadState : public iState
 {
@@ -11,7 +11,7 @@ public:
     PlaceRoadState() = default;
 
 private:
-    boost::optional<utils::PointU> m_position;
+    std::optional<utils::PointU> m_position;
 
     virtual std::string impl_message() const override;
 

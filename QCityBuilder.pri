@@ -18,11 +18,15 @@ QCITYBUILDER_MOC_TESTS = $$QCITYBUILDER_ROOT/moc_tests
 
 DESTDIR = $$QCITYBUILDER_BIN
 
-CONFIG += c++11
+CONFIG += c++17
 
 linux-g++ {
-QMAKE_CXXFLAGS += -std=c++11 -O0 --coverage -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
-                    -Wredundant-decls -Wno-long-long -Wuninitialized
+    QMAKE_CXXFLAGS += -std=c++17 -O0 --coverage -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
+                      -Wredundant-decls -Wno-long-long -Wuninitialized
+}
+else
+{
+    QMAKE_CXXFLAGS += /std:c++17
 }
 
 LIBS += --coverage

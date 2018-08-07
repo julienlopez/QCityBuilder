@@ -34,7 +34,7 @@ before_install:
   - g++ -v
   - chmod 755 tests.sh
   - sudo apt-get update -qq
-  - sudo apt-get install libgtest-dev google-mock cmake
+  - sudo apt-get install libgtest-dev cmake
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
   - sudo apt-get update
   - sudo apt-get install libboost-dev

@@ -1,12 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2014-02-20T09:20:04
-#
-#-------------------------------------------------
-
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets
 
 TARGET = QCityBuilder
 TEMPLATE = app
@@ -15,6 +7,7 @@ include (../QCityBuilder.pri)
 
 LIBS += -L$$QCITYBUILDER_BIN
 LIBS += -lQCityBuilder
+LIBS += -llibQCityBuilder
 
 INCLUDEPATH += $$QCITYBUILDER_LIB
 
