@@ -1,6 +1,6 @@
 QT -= gui widgets
 
-TARGET = tests
+TARGET = unit_tests
 TEMPLATE = app
 
 CONFIG += console

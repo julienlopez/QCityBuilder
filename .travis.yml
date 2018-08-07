@@ -48,7 +48,7 @@ before_install:
 
 install:
   - ls -lh
-  - qmake "COVERAGE=1" && make CXX=g++-7 VERBOSE=1 tests
+  - qmake "COVERAGE=1" && make CXX=g++-7 VERBOSE=1 unit_tests
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/bin/
   - bin/tests
 
