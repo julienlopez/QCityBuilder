@@ -17,6 +17,7 @@ before_install:
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
   - sudo apt-get update
   # - sudo apt-get install libboost1.53-dev #libboost-filesystem1.53-dev libboost-program-options1.53-dev
+  - apt search boost-dev
   - chmod 755 ci/build_gtest.sh
   - sudo ci/build_gtest.sh
   - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
