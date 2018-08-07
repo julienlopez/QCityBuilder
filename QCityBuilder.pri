@@ -27,4 +27,4 @@ win32 {
                       -Wredundant-decls -Wno-long-long -Wuninitialized
 }
 
-LIBS = --coverage $$LIBS
+LIBS += --coverage

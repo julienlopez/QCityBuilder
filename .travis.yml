@@ -47,8 +47,7 @@ before_install:
   - sudo pip install codecov
 
 install:
-  - grep -r "__gcov_exit" /usr/lib
-  - qmake "COVERAGE=1" && make CXX=g++-7 VERBOSE=1
+  - qmake "COVERAGE=1" && make CXX=g++-7 LD=g++-7 VERBOSE=1
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/bin/
   - bin/tests
 
