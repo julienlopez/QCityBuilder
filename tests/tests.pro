@@ -3,6 +3,9 @@ QT -= gui widgets
 TARGET = tests
 TEMPLATE = app
 
+CONFIG += console
+CONFIG -= app_bundle
+
 include (../QCityBuilder.pri)
 
 LIBS += -L$$QCITYBUILDER_BIN
