@@ -4,8 +4,11 @@
 
 BEGIN_NAMESPACE_WORLD
 
-City::City(std::string name_, utils::SizeU size_): m_name(std::move(name_)), m_map(std::move(size_))
-{}
+City::City(std::string name_, utils::SizeU size_)
+    : m_name(std::move(name_))
+    , m_map(std::move(size_))
+{
+}
 
 void City::add(Building b)
 {
@@ -36,7 +39,7 @@ void City::addRoad(Map::square_container_t squares)
 bool City::isAreaFreeToBuild(const utils::RectU& area) const
 {
     bool res = true;
-    area.for_each([&res, this](const utils::PointU& p){ res &= m_map.squareIsEmpty(p); });
+    area.for_each([&res, this](const utils::PointU& p) { res &= m_map.squareIsEmpty(p); });
     return res;
 }
 

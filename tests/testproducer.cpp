@@ -12,8 +12,10 @@ struct TestProducer : public testing::Test
     const std::size_t output_amount1 = 1;
     const std::size_t timeout = 20;
 
-    Producer producer = {200, Production(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
-                         {std::make_pair(output_type1, output_amount1)})};
+    Producer producer
+        = {200,
+           Production(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
+                      {std::make_pair(output_type1, output_amount1)})};
 };
 
 TEST_F(TestProducer, InventoryEmptyOnCreation)

@@ -6,8 +6,8 @@
 BEGIN_NAMESPACE_UTILS
 
 /**
-  * \brief Defines a non-instantiable class.
-  */
+ * \brief Defines a non-instantiable class.
+ */
 class noninstantiable : private noncopiable
 {
 protected:

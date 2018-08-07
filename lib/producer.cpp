@@ -2,7 +2,9 @@
 
 #include <utility>
 
-Producer::Producer(std::size_t capacity, Production production): m_production(std::move(production)), m_inventory(capacity)
+Producer::Producer(std::size_t capacity, Production production)
+    : m_production(std::move(production))
+    , m_inventory(capacity)
 {
     m_currentTimeout = 0;
 }
@@ -24,8 +26,7 @@ void Producer::update()
         const auto& needed = m_production.inputs();
         for(const auto& n : needed)
         {
-            if(!m_inventory.hasEnough(n.first, n.second))
-                return;
+            if(!m_inventory.hasEnough(n.first, n.second)) return;
         }
         for(const auto& n : needed)
         {

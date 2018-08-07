@@ -8,7 +8,8 @@
 
 BEGIN_NAMESPACE_WORLD
 
-class BuildingTypeHandler : public utils::singleton<BuildingTypeHandler>, public utils::containerwithidentifier<uint8_t, BuildingType>
+class BuildingTypeHandler : public utils::singleton<BuildingTypeHandler>,
+                            public utils::containerwithidentifier<uint8_t, BuildingType>
 {
 public:
     uint8_t getByName(const std::string& name) const;

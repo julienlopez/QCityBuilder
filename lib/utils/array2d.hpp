@@ -1,21 +1,27 @@
 #ifndef ARRAY2D_HPP
 #define ARRAY2D_HPP
 
-#include <utils/point.hpp>
 #include "utils/size.hpp"
+#include <utils/point.hpp>
 
 #include <vector>
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T, class CONST_PARAMETER_TYPE = T> class Array2D
+template <class T, class CONST_PARAMETER_TYPE = T> class Array2D
 {
 public:
-    Array2D(SizeU size_): m_data(size_.volume()), m_size(std::move(size_))
-    {}
+    Array2D(SizeU size_)
+        : m_data(size_.volume())
+        , m_size(std::move(size_))
+    {
+    }
 
-    Array2D(SizeU size_, CONST_PARAMETER_TYPE t): m_data(size_.volume(), t), m_size(std::move(size_))
-    {}
+    Array2D(SizeU size_, CONST_PARAMETER_TYPE t)
+        : m_data(size_.volume(), t)
+        , m_size(std::move(size_))
+    {
+    }
 
     std::size_t width() const
     {

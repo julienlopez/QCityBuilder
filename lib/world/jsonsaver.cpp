@@ -11,7 +11,7 @@ BEGIN_NAMESPACE_WORLD
 void JsonSaver::writeToStream(const QJsonObject& object, std::ostream& o)
 {
     QJsonDocument doc(object);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
+#if(QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     QString str(doc.toJson(QJsonDocument::Compact));
 #else
     QString str(doc.toJson());
@@ -75,7 +75,7 @@ QJsonObject JsonSaver::saveBuildingType(const BuildingType& buildingtype)
     return res;
 }
 
-//QJsonObject JsonSaver::saveMap(const Map& map)
+// QJsonObject JsonSaver::saveMap(const Map& map)
 //{
 //    QJsonObject res;
 //    res.insert("size", saveSizeU(map.size()));

@@ -2,13 +2,13 @@
 #include "buttonplacebuilding.hpp"
 #include "buttonplaceroad.hpp"
 
-#include <QVBoxLayout>
-#include <QGroupBox>
-#include <QGridLayout>
 #include <QButtonGroup>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QVBoxLayout>
 
-StateDock::StateDock(QWidget* parent_) :
-    QDockWidget(parent_)
+StateDock::StateDock(QWidget* parent_)
+    : QDockWidget(parent_)
 {
     m_buildingButtons = new QButtonGroup(this);
     m_buildingButtons->setExclusive(true);
@@ -45,7 +45,7 @@ QGroupBox* StateDock::createBuildingGroupBox() const
         auto* b = new ButtonPlaceBuilding(pair.first);
         connect(b, &ButtonPlaceBuilding::activated, this, &StateDock::newStateActivated);
         m_buildingButtons->addButton(b);
-        gl->addWidget(b, i/3, i%3);
+        gl->addWidget(b, i / 3, i % 3);
         ++i;
     }
 
@@ -62,7 +62,7 @@ QGroupBox* StateDock::createUtilsGroupBox() const
     auto* b = new ButtonPlaceRoad;
     connect(b, &ButtonPlaceRoad::activated, this, &StateDock::newStateActivated);
     m_buildingButtons->addButton(b);
-    gl->addWidget(b, i/3, i%3);
+    gl->addWidget(b, i / 3, i % 3);
 
     gb->setLayout(gl);
     return gb;

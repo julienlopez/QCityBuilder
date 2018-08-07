@@ -3,20 +3,21 @@
 
 #include "utils/noncopiable.hpp"
 
-#include <vector>
 #include <string>
+#include <vector>
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T>
-class UniqueContainerWithName : private utils::noncopiable
+template <class T> class UniqueContainerWithName : private utils::noncopiable
 {
 public:
     using container = std::vector<T>;
     using const_iterator = typename container::const_iterator;
 
-    UniqueContainerWithName(std::string name_): m_name(std::move(name_))
-    {}
+    UniqueContainerWithName(std::string name_)
+        : m_name(std::move(name_))
+    {
+    }
 
     bool empty() const
     {

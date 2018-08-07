@@ -19,7 +19,6 @@ signals:
     void activated(std::shared_ptr<iState>);
 
 public slots:
-
 };
 
 #endif // BUTTONPLACEBUILDING_HPP

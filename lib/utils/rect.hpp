@@ -8,17 +8,21 @@
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class Rect_
+template <class T> class Rect_
 {
 public:
     using type_point = Point_<T>;
     using type_size = Size_<T>;
 
-    Rect_(type_point topLeft_, type_size size_): m_topLeft(topLeft_), m_size(size_)
-    {}
+    Rect_(type_point topLeft_, type_size size_)
+        : m_topLeft(topLeft_)
+        , m_size(size_)
+    {
+    }
 
-    Rect_(type_point topLeft_, type_point bottomRight_): m_topLeft(topLeft_),
-        m_size(bottomRight_.x() - topLeft_.x() + 1, bottomRight_.y() - topLeft_.y() + 1)
+    Rect_(type_point topLeft_, type_point bottomRight_)
+        : m_topLeft(topLeft_)
+        , m_size(bottomRight_.x() - topLeft_.x() + 1, bottomRight_.y() - topLeft_.y() + 1)
     {
         assert(bottomRight_.x() > topLeft_.x() && bottomRight_.y() > topLeft_.y());
     }
@@ -54,8 +58,7 @@ public:
         return p.x() >= m_topLeft.x() && p.x() <= bt.x() && p.y() >= m_topLeft.y() && p.y() <= bt.y();
     }
 
-    template<class FCT>
-    void for_each(FCT fct) const
+    template <class FCT> void for_each(FCT fct) const
     {
         auto bt = bottomRight();
         for(T x = topLeft().x(); x <= bt.x(); x++)
@@ -68,8 +71,7 @@ private:
     type_size m_size;
 };
 
-template<class T, class U>
-bool operator==(const Rect_<T>& r1, const Rect_<U>& r2)
+template <class T, class U> bool operator==(const Rect_<T>& r1, const Rect_<U>& r2)
 {
     return r1.topLeft() == r2.topLeft() && r1.size() == r2.size();
 }

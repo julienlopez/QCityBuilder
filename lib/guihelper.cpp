@@ -22,4 +22,3 @@ utils::RectU GuiHelper::findBestLineBetweenTwoPoints(const utils::PointU& p1, co
         return res;
     }
 }
-

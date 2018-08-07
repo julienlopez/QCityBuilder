@@ -1,8 +1,12 @@
 #include "production.hpp"
 
-Production::Production(std::size_t timeout_, container_pairs_identifier_amount inputs_, container_pairs_identifier_amount outputs_):
-    m_timeout(timeout_), m_inputs(std::move(inputs_)), m_outputs(std::move(outputs_))
-{}
+Production::Production(std::size_t timeout_, container_pairs_identifier_amount inputs_,
+                       container_pairs_identifier_amount outputs_)
+    : m_timeout(timeout_)
+    , m_inputs(std::move(inputs_))
+    , m_outputs(std::move(outputs_))
+{
+}
 
 auto Production::inputs() const -> const container_pairs_identifier_amount&
 {

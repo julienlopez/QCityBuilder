@@ -1,6 +1,6 @@
 #include "jsonloader.hpp"
-#include "city.hpp"
 #include "buildingtype.hpp"
+#include "city.hpp"
 
 #include <QJsonArray>
 #include <QJsonDocument>

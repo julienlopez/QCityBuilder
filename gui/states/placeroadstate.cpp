@@ -28,7 +28,7 @@ void PlaceRoadState::impl_leftClick(World::City& city, const utils::PointU& pos)
         const auto rect = GuiHelper::findBestLineBetweenTwoPoints(*m_position, pos);
         if(city.isAreaFreeToBuild(rect))
         {
-            rect.for_each([&points](const utils::PointU& p){ points.push_back(p);});
+            rect.for_each([&points](const utils::PointU& p) { points.push_back(p); });
             city.addRoad(points);
             m_position.reset();
         }

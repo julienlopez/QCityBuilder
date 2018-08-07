@@ -5,8 +5,9 @@
 
 #include <string>
 
-namespace World {
-    class City;
+namespace World
+{
+class City;
 }
 
 class iState

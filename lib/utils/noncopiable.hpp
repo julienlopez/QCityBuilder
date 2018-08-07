@@ -6,8 +6,8 @@
 BEGIN_NAMESPACE_UTILS
 
 /**
-  * \brief Defines a non-copiable class.
-  */
+ * \brief Defines a non-copiable class.
+ */
 class noncopiable
 {
 protected:

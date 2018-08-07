@@ -4,7 +4,7 @@
 
 struct TestInventory : public ::testing::Test
 {
-    Inventory inventory {200};
+    Inventory inventory{200};
 };
 
 TEST_F(TestInventory, EmptyOnCreation)
@@ -53,7 +53,7 @@ TEST_F(TestInventoryWithTenOfZero, AmountIsUpdatedAfterTakingSome)
 
 TEST_F(TestInventoryWithTenOfZero, TakingThrowsIfNotEnough)
 {
-    ASSERT_ANY_THROW(inventory.take(0, amount+1));
+    ASSERT_ANY_THROW(inventory.take(0, amount + 1));
 }
 
 TEST_F(TestInventoryWithTenOfZero, TakingThrowsIfNotAnyOfThatElement)

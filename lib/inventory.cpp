@@ -1,7 +1,9 @@
 #include "inventory.hpp"
 
-Inventory::Inventory(std::size_t capacity_): m_capacity(capacity_)
-{}
+Inventory::Inventory(std::size_t capacity_)
+    : m_capacity(capacity_)
+{
+}
 
 void Inventory::add(identifier id, std::size_t amount_)
 {

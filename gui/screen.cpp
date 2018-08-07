@@ -11,9 +11,10 @@
 
 #include <QDebug>
 
-Screen::Screen(QWidget* p): QWidget(p)
+Screen::Screen(QWidget* p)
+    : QWidget(p)
 {
-//    setDragMode(QGraphicsView::ScrollHandDrag);
+    //    setDragMode(QGraphicsView::ScrollHandDrag);
     setFocus();
 }
 
@@ -35,11 +36,11 @@ void Screen::mouseMoveEvent(QMouseEvent* evt)
 
     auto& city = World::CurrentCityHolder::get();
     QPointF position(evt->pos());
-//    qDebug() << position;
+    //    qDebug() << position;
     auto screenInfos = computeScreenInfos(city);
     position -= QPoint(screenInfos.xMargin, screenInfos.yMargin);
     position /= screenInfos.ratio;
-//    qDebug() << position.toPoint();
+    //    qDebug() << position.toPoint();
     m_mousePosition = utils::PointU(position.toPoint().x(), position.toPoint().y());
     setFocus();
     update();
@@ -63,14 +64,18 @@ void Screen::wheelEvent(QWheelEvent* evt)
     evt->accept();
 }
 
-namespace {
+namespace
+{
 QColor type2color(World::Map::SquareType type)
 {
     switch(type)
     {
-        case World::Map::SquareType::Empty: return Qt::green;
-        case World::Map::SquareType::Building: return Qt::blue;
-        case World::Map::SquareType::Road: return Qt::lightGray;
+    case World::Map::SquareType::Empty:
+        return Qt::green;
+    case World::Map::SquareType::Building:
+        return Qt::blue;
+    case World::Map::SquareType::Road:
+        return Qt::lightGray;
     }
     return Qt::yellow;
 }
@@ -98,8 +103,8 @@ void Screen::paintEvent(QPaintEvent* evt)
 
 double Screen::computeZoomToFit(const World::City& city) const
 {
-    double ratioX = (double)width()/city.map().width();
-    double ratioY = (double)height()/city.map().height();
+    double ratioX = (double)width() / city.map().width();
+    double ratioY = (double)height() / city.map().height();
     return std::min(ratioX, ratioY);
 }
 
@@ -124,36 +129,38 @@ void Screen::drawCurrentStateArea(const World::City& city, QPainter& painter) co
 {
     if(!m_currentState) return;
     if(!m_mousePosition) return;
-//    qDebug() << m_mousePosition->x() << ", " << m_mousePosition->y();
+    //    qDebug() << m_mousePosition->x() << ", " << m_mousePosition->y();
     auto area = m_currentState->area(*m_mousePosition);
-//    qDebug() << "{" << rect.topLeft().x() << ", " << rect.topLeft().y() << "}, {" << rect.bottomRight().x() << ", " << rect.bottomRight().y() << "}";
+    //    qDebug() << "{" << rect.topLeft().x() << ", " << rect.topLeft().y() << "}, {" << rect.bottomRight().x() << ",
+    //    " << rect.bottomRight().y() << "}";
     auto b = painter.brush();
     QColor c = city.isAreaFreeToBuild(area) ? Qt::yellow : c = Qt::red;
     c.setAlphaF(.6);
     b.setColor(c);
     painter.setBrush(b);
-    painter.drawRect(QRectF(QPoint(area.topLeft().x(), area.topLeft().y()), QSize(area.size().width(), area.size().height())));
+    painter.drawRect(
+        QRectF(QPoint(area.topLeft().x(), area.topLeft().y()), QSize(area.size().width(), area.size().height())));
 }
 
 void Screen::do_zoom(int delta)
 {
-//    double zoom = 1.0 + (delta / 1000.0);
-//    scale(zoom, zoom);
+    //    double zoom = 1.0 + (delta / 1000.0);
+    //    scale(zoom, zoom);
 }
 
 auto Screen::computeScreenInfos(const World::City& city) const -> ScreenInfos
 {
     ScreenInfos res;
     res.ratio = computeZoomToFit(city);
-    res.xMargin = (width()-city.map().width()*res.ratio)/2;
-    res.yMargin = (height()-city.map().height()*res.ratio)/2;
+    res.xMargin = (width() - city.map().width() * res.ratio) / 2;
+    res.yMargin = (height() - city.map().height() * res.ratio) / 2;
     return res;
 }
 
 void Screen::onNewStateActivated(std::shared_ptr<iState> state)
 {
     m_currentState = state;
-    emit displayStatusText(QString::fromStdString(state?state->message():""));
+    emit displayStatusText(QString::fromStdString(state ? state->message() : ""));
     update();
     setMouseTracking((bool)m_currentState);
 

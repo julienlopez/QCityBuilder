@@ -5,7 +5,7 @@
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class singleton : private noncopiable
+template <class T> class singleton : private noncopiable
 {
 public:
     static T& instance()
@@ -20,7 +20,9 @@ public:
     }
 
 protected:
-    singleton() {}
+    singleton()
+    {
+    }
 };
 
 END_NAMESPACE_UTILS

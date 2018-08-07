@@ -11,8 +11,9 @@
 
 class iState;
 
-namespace World {
-    class City;
+namespace World
+{
+class City;
 }
 
 class Screen : public QWidget

@@ -11,7 +11,12 @@ BEGIN_NAMESPACE_WORLD
 class Map
 {
 public:
-    enum class SquareType : unsigned char {Empty=0, Building, Road};
+    enum class SquareType : unsigned char
+    {
+        Empty = 0,
+        Building,
+        Road
+    };
 
     using square_container_t = std::vector<utils::PointU>;
 

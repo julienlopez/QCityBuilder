@@ -7,11 +7,14 @@
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class Size_
+template <class T> class Size_
 {
 public:
-    Size_(T width_, T height_): m_width(width_), m_height(height_)
-    {}
+    Size_(T width_, T height_)
+        : m_width(width_)
+        , m_height(height_)
+    {
+    }
 
     T width() const
     {
@@ -33,8 +36,7 @@ private:
     T m_height;
 };
 
-template<class T, class U>
-bool operator==(const Size_<T>& s1, const Size_<U>& s2)
+template <class T, class U> bool operator==(const Size_<T>& s1, const Size_<U>& s2)
 {
     return s1.width() == s2.width() && s1.height() == s2.height();
 }

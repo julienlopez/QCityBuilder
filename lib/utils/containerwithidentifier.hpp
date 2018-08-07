@@ -3,14 +3,13 @@
 
 #include "namespace_utils.hpp"
 
-#include <map>
-#include <limits>
 #include <cassert>
+#include <limits>
+#include <map>
 
 BEGIN_NAMESPACE_UTILS
 
-template<class ID, class T>
-class containerwithidentifier
+template <class ID, class T> class containerwithidentifier
 {
 public:
     containerwithidentifier() = default;
@@ -44,16 +43,14 @@ public:
     const T& get(ID id) const
     {
         auto it = m_map.find(id);
-        if(it == m_map.end())
-            throw std::invalid_argument("id " + std::to_string(id) + " dosen't exists.");
+        if(it == m_map.end()) throw std::invalid_argument("id " + std::to_string(id) + " dosen't exists.");
         return it->second;
     }
 
     T& get(ID id)
     {
         auto it = m_map.find(id);
-        if(it == m_map.end())
-            throw std::invalid_argument("id " + std::to_string(id) + " dosen't exists.");
+        if(it == m_map.end()) throw std::invalid_argument("id " + std::to_string(id) + " dosen't exists.");
         return it->second;
     }
 
@@ -93,7 +90,6 @@ public:
 private:
     type_map m_map;
 };
-
 
 END_NAMESPACE_UTILS
 

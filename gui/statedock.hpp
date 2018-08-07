@@ -27,7 +27,6 @@ private:
 
     QGroupBox* createBuildingGroupBox() const;
     QGroupBox* createUtilsGroupBox() const;
-
 };
 
 #endif // STATEDOCK_HPP

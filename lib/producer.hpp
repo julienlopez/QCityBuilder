@@ -1,8 +1,8 @@
 #ifndef PRODUCER_HPP
 #define PRODUCER_HPP
 
-#include "production.hpp"
 #include "inventory.hpp"
+#include "production.hpp"
 
 class Producer
 {

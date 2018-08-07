@@ -13,7 +13,7 @@ class QJsonObject;
 BEGIN_NAMESPACE_WORLD
 
 class City;
-//class Map;
+// class Map;
 class Building;
 class BuildingType;
 
@@ -28,8 +28,7 @@ public:
 
     static QJsonObject saveBuildingType(const BuildingType& building);
 
-
-//    static QJsonObject saveMap(const Map& map);
+    //    static QJsonObject saveMap(const Map& map);
 
     static QJsonObject saveSizeU(const utils::SizeU& size);
 

@@ -122,7 +122,7 @@ TEST(TestGuiHelper, findBestLineBetweenTwoPointsDiagonalBottomLeftLeft)
 {
     const std::size_t span = 5;
     const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span, span/2);
+    const auto p2 = p1 - utils::PointU(span, span / 2);
     const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
     ASSERT_EQ(utils::PointU(p2.x(), p1.y()), res.topLeft());
     ASSERT_EQ(p1, res.bottomRight());
@@ -144,7 +144,7 @@ TEST(TestGuiHelper, findBestLineBetweenTwoPointsDiagonalBottomBottomLeft)
 {
     const std::size_t span = 5;
     const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span/2, span);
+    const auto p2 = p1 - utils::PointU(span / 2, span);
     const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
     ASSERT_EQ(utils::PointU(p1.x(), p2.y()), res.topLeft());
     ASSERT_EQ(p1, res.bottomRight());

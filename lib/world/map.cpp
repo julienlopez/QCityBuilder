@@ -2,8 +2,10 @@
 
 BEGIN_NAMESPACE_WORLD
 
-Map::Map(utils::SizeU size_): m_squares(std::move(size_), SquareType::Empty)
-{}
+Map::Map(utils::SizeU size_)
+    : m_squares(std::move(size_), SquareType::Empty)
+{
+}
 
 std::size_t Map::width() const
 {
@@ -20,14 +22,14 @@ const utils::SizeU& Map::size() const
     return m_squares.size();
 }
 
-bool Map::squareIsEmpty(const utils::PointU &p) const
+bool Map::squareIsEmpty(const utils::PointU& p) const
 {
     return squareType(p) == SquareType::Empty;
 }
 
 void Map::placeBuilding(const utils::RectU& r)
 {
-    r.for_each([this](const utils::PointU& p){ m_squares(p) = SquareType::Building; });
+    r.for_each([this](const utils::PointU& p) { m_squares(p) = SquareType::Building; });
 }
 
 auto Map::squareType(const utils::PointU& p) const -> SquareType

@@ -47,8 +47,7 @@ std::size_t InventorySummary::amount(identifier id) const
 std::size_t InventorySummary::spaceOccupied() const
 {
     return std::accumulate(m_map.begin(), m_map.end(), 0,
-                           [](std::size_t count, const type_map::value_type& p)
-                            { return count + p.second; });
+                           [](std::size_t count, const type_map::value_type& p) { return count + p.second; });
 }
 
 void InventorySummary::take(identifier id, std::size_t amount_)
@@ -56,8 +55,8 @@ void InventorySummary::take(identifier id, std::size_t amount_)
     auto it = m_map.find(id);
     if(it == m_map.end()) throw std::invalid_argument("not any of " + std::to_string(id));
     if(it->second < amount_)
-        throw std::invalid_argument("not enough of " + std::to_string(id) + ": "
-                                    + std::to_string(it->second) + " < " + std::to_string(amount_));
+        throw std::invalid_argument("not enough of " + std::to_string(id) + ": " + std::to_string(it->second) + " < "
+                                    + std::to_string(amount_));
     it->second -= amount_;
     if(it->second == 0) m_map.erase(it);
 }
@@ -72,7 +71,7 @@ auto InventorySummary::begin() const -> type_map::const_iterator
     return m_map.begin();
 }
 
-auto InventorySummary::end() const ->type_map::const_iterator
+auto InventorySummary::end() const -> type_map::const_iterator
 {
     return m_map.end();
 }

@@ -7,11 +7,14 @@
 
 BEGIN_NAMESPACE_UTILS
 
-template<class T> class Point_
+template <class T> class Point_
 {
 public:
-    Point_(T x_, T y_): m_x(x_), m_y(y_)
-    {}
+    Point_(T x_, T y_)
+        : m_x(x_)
+        , m_y(y_)
+    {
+    }
 
     Point_(const Point_&) = default;
 
@@ -34,23 +37,20 @@ private:
     T m_y;
 };
 
-template<class T, class U>
-bool operator==(const Point_<T>& p1, const Point_<U>& p2)
+template <class T, class U> bool operator==(const Point_<T>& p1, const Point_<U>& p2)
 {
     return p1.x() == p2.x() && p1.y() == p2.y();
 }
 
-template<class T, class U>
-Point_<T> operator+(const Point_<T>& p1, const Point_<U>& p2)
+template <class T, class U> Point_<T> operator+(const Point_<T>& p1, const Point_<U>& p2)
 {
-    return { p1.x() + p2.x(), p1.y() + p2.y() };
+    return {p1.x() + p2.x(), p1.y() + p2.y()};
 }
 
-template<class T, class U>
-Point_<T> operator-(const Point_<T>& p1, const Point_<U>& p2)
+template <class T, class U> Point_<T> operator-(const Point_<T>& p1, const Point_<U>& p2)
 {
     assert(p1.x() >= p2.x() && p1.y() >= p2.y());
-    return { p1.x() - p2.x(), p1.y() - p2.y() };
+    return {p1.x() - p2.x(), p1.y() - p2.y()};
 }
 
 using Point = Point_<int>;

@@ -1,11 +1,12 @@
 #include "mainwindow.hpp"
+#include "resourcespanel.hpp"
 #include "screen.hpp"
 #include "statedock.hpp"
-#include "resourcespanel.hpp"
 
 #include <QStatusBar>
 
-MainWindow::MainWindow(QWidget* p): QMainWindow(p)
+MainWindow::MainWindow(QWidget* p)
+    : QMainWindow(p)
 {
     auto* screen = new Screen;
     connect(screen, &Screen::displayStatusText, this, &MainWindow::onDisplayStatusText);

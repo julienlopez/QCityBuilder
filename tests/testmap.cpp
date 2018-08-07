@@ -6,7 +6,7 @@ using namespace World;
 
 struct TestMap : public testing::Test
 {
-    City city {"TestTown", {10, 10}};
+    City city{"TestTown", {10, 10}};
     const Map& map = city.map();
 };
 
@@ -32,13 +32,15 @@ TEST_F(TestMap, SquaresNotEmptyAfterPlacingABuilding)
 
 TEST_F(TestMap, addStraightRoad)
 {
-    city.addRoad({{5,2}, {5,3}, {5,4}, {5,5}});
+    city.addRoad({{5, 2}, {5, 3}, {5, 4}, {5, 5}});
     for(std::size_t x = 0; x < map.width(); x++)
         for(std::size_t y = 0; y < map.height(); y++)
         {
             if(x == 5 && y >= 2 && y <= 5)
-                ASSERT_EQ(Map::SquareType::Road, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Road";
+                ASSERT_EQ(Map::SquareType::Road, map.squareType(utils::PointU(x, y)))
+                    << "{" << x << ", " << y << "} != Road";
             else
-                ASSERT_EQ(Map::SquareType::Empty, map.squareType(utils::PointU(x, y))) << "{" << x << ", " << y << "} != Empty";
+                ASSERT_EQ(Map::SquareType::Empty, map.squareType(utils::PointU(x, y)))
+                    << "{" << x << ", " << y << "} != Empty";
         }
 }
