@@ -7,7 +7,7 @@ dist: trusty
 sudo: required
 
 matrix:
-  #include:
+  include:
   #  # works on Precise and Trusty
   #  - os: linux
   #    addons:
