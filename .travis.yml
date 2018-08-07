@@ -46,7 +46,11 @@ before_install:
   # Codecov
   - sudo pip install codecov
 
-script: ./tests.sh
+script:
+  - ls -lh
+  - qmake "COVERAGE=1" && make CXX=g++-7 VERBOSE=1 tests
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/bin/
+  - bin/tests
 
 after_success:
   # Creating report
