@@ -1,5 +1,10 @@
 language: cpp
 
+compiler: gcc
+
+dist: trusty
+sudo: required
+
 matrix:
   include:
 
