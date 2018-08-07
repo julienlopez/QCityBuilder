@@ -1,92 +1,6 @@
-#include <gtest/gtest.h>
+#include <catch.hpp>
 
 #include <guihelper.hpp>
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsSamePoints)
-{
-    const utils::PointU p1(10, 11);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p1);
-    ASSERT_EQ(p1, res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsOneToTheRight)
-{
-    const std::size_t span = 1;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 + utils::PointU(span, 0);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p1, res.topLeft());
-    ASSERT_EQ(p2, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsOneToTheLeft)
-{
-    const std::size_t span = 1;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span, 0);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p2, res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsToTheRight)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 + utils::PointU(span, 0);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p1, res.topLeft());
-    ASSERT_EQ(p2, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsToTheLeft)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span, 0);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p2, res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsOneToTheBottom)
-{
-    const std::size_t span = 1;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 + utils::PointU(0, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p1, res.topLeft());
-    ASSERT_EQ(p2, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, span + 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsOneToTheTop)
-{
-    const std::size_t span = 1;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(0, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p2, res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, span + 1), res.size());
-}
-
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsToTheBottom)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 + utils::PointU(0, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p1, res.topLeft());
-    ASSERT_EQ(p2, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, span + 1), res.size());
-}
 
 namespace utils
 {
@@ -107,46 +21,136 @@ namespace utils
 }
 }
 
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsToTheTop)
+TEST_CASE("Test Gui Helper")
 {
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(0, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(p2, res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, span + 1), res.size());
-}
 
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsDiagonalBottomLeftLeft)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span, span / 2);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(utils::PointU(p2.x(), p1.y()), res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size()) << res.size() << " != " << utils::SizeU(span + 1, 1);
-}
+    SECTION("Find Best Line Between Two Points Same Points")
+    {
+        const utils::PointU p1(10, 11);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p1);
+        CHECK(p1 == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(1, 1) == res.size());
+    }
 
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsDiagonalBottomLeft)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(utils::PointU(p2.x(), p1.y()), res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(span + 1, 1), res.size());
-}
+    SECTION("Find Best Line Between Two Points One To The Right")
+    {
+        const std::size_t span = 1;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 + utils::PointU(span, 0);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p1 == res.topLeft());
+        CHECK(p2 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
 
-TEST(TestGuiHelper, findBestLineBetweenTwoPointsDiagonalBottomBottomLeft)
-{
-    const std::size_t span = 5;
-    const utils::PointU p1(10, 11);
-    const auto p2 = p1 - utils::PointU(span / 2, span);
-    const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
-    ASSERT_EQ(utils::PointU(p1.x(), p2.y()), res.topLeft());
-    ASSERT_EQ(p1, res.bottomRight());
-    ASSERT_EQ(utils::SizeU(1, span + 1), res.size());
+    SECTION("Find Best Line Between Two Points One To The Left")
+    {
+        const std::size_t span = 1;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(span, 0);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p2 == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points To The Right")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 + utils::PointU(span, 0);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p1 == res.topLeft());
+        CHECK(p2 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points To The Left")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(span, 0);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p2 == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points One To The Bottom")
+    {
+        const std::size_t span = 1;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 + utils::PointU(0, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p1 == res.topLeft());
+        CHECK(p2 == res.bottomRight());
+        CHECK(utils::SizeU(1, span + 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points One To The Top")
+    {
+        const std::size_t span = 1;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(0, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p2 == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(1, span + 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points To The Bottom")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 + utils::PointU(0, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p1 == res.topLeft());
+        CHECK(p2 == res.bottomRight());
+        CHECK(utils::SizeU(1, span + 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points To The Top")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(0, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(p2 == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(1, span + 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points Diagonal Bottom Left Left")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(span, span / 2);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(utils::PointU(p2.x(), p1.y()) == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points Diagonal Bottom Left")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(span, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(utils::PointU(p2.x(), p1.y()) == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(span + 1, 1) == res.size());
+    }
+
+    SECTION("Find Best Line Between Two Points Diagonal Bottom Bottom Left")
+    {
+        const std::size_t span = 5;
+        const utils::PointU p1(10, 11);
+        const auto p2 = p1 - utils::PointU(span / 2, span);
+        const auto res = GuiHelper::findBestLineBetweenTwoPoints(p1, p2);
+        CHECK(utils::PointU(p1.x(), p2.y()) == res.topLeft());
+        CHECK(p1 == res.bottomRight());
+        CHECK(utils::SizeU(1, span + 1) == res.size());
+    }
 }

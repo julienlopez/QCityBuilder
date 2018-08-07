@@ -3,6 +3,7 @@
 
 #include "namespace_utils.hpp"
 
+#include <cassert>
 #include <cstddef>
 
 BEGIN_NAMESPACE_UTILS
