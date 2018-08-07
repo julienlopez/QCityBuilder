@@ -10,10 +10,10 @@
 
 using namespace World;
 const std::string strJsonBuildingTypeNoRequirements
-    = "{\"name\": \"test_building\",\"requirements\": [],\"size\": {\"height\": 5,\"width\": 10}}";
-const std::string strJsonBuildingType = "{\"name\": \"test_building\",\"requirements\": [{\"amount\": 10,\"name\": "
-                                        "\"wood\"},{\"amount\": 20,\"name\": \"stone\"}],\"size\": {\"height\": "
-                                        "5,\"width\": 10}}";
+    = "{\"name\":\"test_building\",\"requirements\":[],\"size\":{\"height\":5,\"width\":10}}";
+const std::string strJsonBuildingType = "{\"name\":\"test_building\",\"requirements\":[{\"amount\":10,\"name\":"
+                                        "\"wood\"},{\"amount\":20,\"name\":\"stone\"}],\"size\":{\"height\":"
+                                        "5,\"width\":10}}";
 
 TEST_CASE("Test of Building Type")
 {

@@ -23,7 +23,7 @@ CONFIG += c++17
 win32 {
     QMAKE_CXXFLAGS += /std:c++17
 } else {
-    QMAKE_CXXFLAGS += -std=c++1z -O0 --coverage -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
+    QMAKE_CXXFLAGS += -std=c++17 -O0 --coverage -Wall -Wextra -pedantic -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-declarations \
                       -Wredundant-decls -Wno-long-long -Wuninitialized
 }
 

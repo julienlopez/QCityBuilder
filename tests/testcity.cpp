@@ -12,14 +12,14 @@
 
 using namespace World;
 const std::string strJsonEmptyCity
-    = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [],\"size\": {\"height\": 10,\"width\": 10}}";
-const std::string strJsonCityWithARoad = "{\"buildings\": [],\"name\": \"TestTown\",\"roads\": [{\"x\": 3,\"y\": "
-                                         "5},{\"x\": 4,\"y\": 5},{\"x\": 5,\"y\": 5},{\"x\": 6,\"y\": 5}],\"size\": "
-                                         "{\"height\": 10,\"width\": 10}}";
-const std::string strJsonCityWithOneBuilding = "{\"buildings\": [{\"entrance\": {\"x\": 5,\"y\": 5},\"rectangle\": "
-                                               "{\"size\": {\"height\": 3,\"width\": 4},\"topleft\": {\"x\": 2,\"y\": "
-                                               "2}},\"type\": \"test_building\"}],\"name\": \"TestTown\",\"roads\": "
-                                               "[],\"size\": {\"height\": 10,\"width\": 10}}";
+    = "{\"buildings\":[],\"name\":\"TestTown\",\"roads\":[],\"size\":{\"height\":10,\"width\":10}}";
+const std::string strJsonCityWithARoad = "{\"buildings\":[],\"name\":\"TestTown\",\"roads\":[{\"x\":3,\"y\":"
+                                         "5},{\"x\":4,\"y\":5},{\"x\":5,\"y\":5},{\"x\":6,\"y\":5}],\"size\":"
+                                         "{\"height\":10,\"width\":10}}";
+const std::string strJsonCityWithOneBuilding = "{\"buildings\":[{\"entrance\":{\"x\":5,\"y\":5},\"rectangle\":"
+                                               "{\"size\":{\"height\":3,\"width\":4},\"topleft\":{\"x\":2,\"y\":"
+                                               "2}},\"type\":\"test_building\"}],\"name\":\"TestTown\",\"roads\":"
+                                               "[],\"size\":{\"height\":10,\"width\":10}}";
 
 TEST_CASE("Test City")
 {
