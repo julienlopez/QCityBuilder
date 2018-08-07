@@ -11,7 +11,7 @@ function error_exit
 	exit 1
 }
 
-$QMAKE "COVERAGE=1" && make CXX=g++-7 VERBOSE=1
+$QMAKE "COVERAGE=1" && make CXX=g++-7 VERBOSE=1 tests
 
 [ $? -ne 0 ] && error_exit "Compile step failed."
 
