@@ -7,7 +7,11 @@ include (../QCityBuilder.pri)
 
 LIBS += -L$$QCITYBUILDER_BIN
 LIBS += -lQCityBuilder
-LIBS += -llibQCityBuilder
+win32 {
+    LIBS += -llibQCityBuilder
+} else {
+    LIBS += -lQCityBuilder
+}
 
 INCLUDEPATH += $$QCITYBUILDER_LIB
 
