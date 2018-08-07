@@ -15,7 +15,7 @@ BEGIN_NAMESPACE_WORLD
 class City;
 // class Map;
 class Building;
-class BuildingType;
+struct BuildingType;
 
 class JsonSaver : private utils::noninstantiable
 {

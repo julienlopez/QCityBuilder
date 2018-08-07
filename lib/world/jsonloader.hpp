@@ -15,7 +15,7 @@ BEGIN_NAMESPACE_WORLD
 
 class City;
 class Building;
-class BuildingType;
+struct BuildingType;
 
 class JsonLoader : private utils::noninstantiable
 {

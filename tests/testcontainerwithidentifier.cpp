@@ -16,7 +16,7 @@ TEST_CASE("Test Container With Identifier")
     SECTION("Not Empty After Adding An Element")
     {
         container.add("one");
-        CHECK(! container.empty());
+        CHECK(!container.empty());
     }
 }
 
