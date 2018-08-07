@@ -27,4 +27,4 @@ win32 {
                       -Wredundant-decls -Wno-long-long -Wuninitialized
 }
 
-LIBS += -lgcov --coverage -fprofile-arcs -ftest-coverage
+LIBS = -lgcov --coverage -fprofile-arcs -ftest-coverage + $$LIBS
