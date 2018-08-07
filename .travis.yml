@@ -13,8 +13,7 @@ before_install:
   - sudo apt-get update -qq
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90; fi
-  - sudo apt-get install libgtest-dev
-  - sudo apt-get install google-mock
+  - sudo apt-get install libgtest-dev google-mock cmake
   - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev qt5-default qttools5-dev-tools
   - sudo apt-get update
   # - sudo apt-get install libboost1.53-dev #libboost-filesystem1.53-dev libboost-program-options1.53-dev
