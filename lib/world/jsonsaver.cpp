@@ -11,11 +11,7 @@ BEGIN_NAMESPACE_WORLD
 void JsonSaver::writeToStream(const QJsonObject& object, std::ostream& o)
 {
     QJsonDocument doc(object);
-#if(QT_VERSION >= QT_VERSION_CHECK(5, 1, 0))
     QString str(doc.toJson(QJsonDocument::Compact));
-#else
-    QString str(doc.toJson());
-#endif
     o << str.toStdString();
 }
 
