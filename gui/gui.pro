@@ -5,15 +5,10 @@ TEMPLATE = app
 
 include (../QCityBuilder.pri)
 
-LIBS += -L$$QCITYBUILDER_BIN
-LIBS += -lQCityBuilder
-win32 {
-    LIBS += -llibQCityBuilder
-} else {
-    LIBS += -lQCityBuilder
-}
+LIBS += -L$$QCITYBUILDER_BIN -lQCityBuilder
 
 INCLUDEPATH += $$QCITYBUILDER_LIB
+DEPENDPATH += $$QCITYBUILDER_LIB
 
 OBJECTS_DIR = $$QCITYBUILDER_OBJ_GUI
 MOC_DIR= $$QCITYBUILDER_MOC_GUI

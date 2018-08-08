@@ -8,13 +8,9 @@ CONFIG -= app_bundle
 
 include (../QCityBuilder.pri)
 
-LIBS += -L$$QCITYBUILDER_BIN
-win32 {
-    LIBS += -llibQCityBuilder
-} else {
-    LIBS += -lQCityBuilder
-}
+LIBS += -L$$QCITYBUILDER_BIN -lQCityBuilder
 
+DEPENDPATH += $$QCITYBUILDER_LIB
 INCLUDEPATH += $$QCITYBUILDER_LIB
 INCLUDEPATH += $$QCITYBUILDER_ROOT/3rd_party/catch
 
