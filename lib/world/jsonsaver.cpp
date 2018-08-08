@@ -12,7 +12,7 @@ void JsonSaver::writeToStream(const QJsonObject& object, std::ostream& o)
 {
     QJsonDocument doc(object);
     QString str(doc.toJson(QJsonDocument::Compact));
-    str.replace(' ', ''); // UGLY FIX
+    str.replace(' ', ""); // UGLY FIX
     o << str.toStdString();
 }
 
