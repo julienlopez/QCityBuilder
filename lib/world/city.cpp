@@ -31,6 +31,11 @@ auto City::buildings() const -> const container_building&
     return m_buildings;
 }
 
+auto City::villagers() const -> const VillagerContainer_t&
+{
+    return m_villagers;
+}
+
 void City::addRoad(Map::square_container_t squares)
 {
     m_map.addRoad(std::move(squares));

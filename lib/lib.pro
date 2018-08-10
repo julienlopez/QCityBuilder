@@ -22,7 +22,8 @@ SOURCES += \
     guihelper.cpp \
     inventorysummary.cpp \
     resourceshandler.cpp \
-    recipe.cpp
+    recipe.cpp \
+    world/villager.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -50,4 +51,5 @@ HEADERS  += \
     guihelper.hpp \
     inventorysummary.hpp \
     resourceshandler.hpp \
-    recipe.hpp
+    recipe.hpp \
+    world/villager.hpp

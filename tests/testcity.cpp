@@ -64,6 +64,12 @@ TEST_CASE("Test Empty City")
 {
     City city{"TestTown", {10, 10}};
 
+    SECTION("Doesn't contain anything by defaul")
+    {
+        CHECK(city.buildings().empty());
+        CHECK(city.villagers().empty());
+    }
+
     SECTION("Saving To Json")
     {
         std::ostringstream oss;
