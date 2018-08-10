@@ -2,6 +2,8 @@
 
 #include "inventorysummary.hpp"
 
+#include <algorithm>
+
 BEGIN_NAMESPACE_WORLD
 
 City::City(std::string name_, utils::SizeU size_)
@@ -43,7 +45,7 @@ void City::addRoad(Map::square_container_t squares)
 
 bool City::isAreaFreeToBuild(const utils::RectU& area) const
 {
-    bool res = true;
+    bool res = !isOutOfBound(area);
     area.for_each([&res, this](const utils::PointU& p) { res &= m_map.squareIsEmpty(p); });
     return res;
 }
@@ -56,6 +58,12 @@ InventorySummary City::totalInventory() const
         res += building.inventory();
     }
     return res;
+}
+
+bool City::isOutOfBound(const utils::RectU& area) const
+{
+    return std::max(area.bottomRight().x(), area.topLeft().x()) >= m_map.width()
+           || std::max(area.bottomRight().y(), area.topLeft().y()) >= m_map.height();
 }
 
 END_NAMESPACE_WORLD

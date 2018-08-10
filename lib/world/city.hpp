@@ -36,6 +36,8 @@ public:
 
     InventorySummary totalInventory() const;
 
+    bool isOutOfBound(const utils::RectU& area) const;
+
 private:
     std::string m_name;
     Map m_map;
