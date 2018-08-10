@@ -2,7 +2,6 @@
 
 #include <world/buildingtypehandler.hpp>
 #include <world/city.hpp>
-#include <world/currentcityholder.hpp>
 #include <world/jsonloader.hpp>
 #include <world/jsonsaver.hpp>
 
@@ -94,17 +93,6 @@ TEST_CASE("Test City With One Building")
         std::ostringstream oss;
         JsonSaver::writeToStream(JsonSaver::saveCity(city), oss);
         CHECK(strJsonCityWithOneBuilding == oss.str());
-    }
-
-    SECTION("Current City Holder")
-    {
-        CHECK(!CurrentCityHolder::isInitialized());
-        const std::string name = "city1";
-        const utils::SizeU size{50, 50};
-        CurrentCityHolder::initialize(name, size);
-        CHECK(CurrentCityHolder::isInitialized());
-        CHECK(name == CurrentCityHolder::get().name());
-        CHECK(size == CurrentCityHolder::get().map().size());
     }
 
     SECTION("Is Area Free To Build")

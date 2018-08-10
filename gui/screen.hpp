@@ -20,7 +20,9 @@ class Screen : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Screen(QWidget* p = 0);
+    explicit Screen(World::City* city, QWidget* p = nullptr);
+
+    virtual ~Screen() = default;
 
 protected:
     virtual void keyPressEvent(QKeyEvent* evt) override;
@@ -34,6 +36,7 @@ protected:
     virtual void paintEvent(QPaintEvent* evt) override;
 
 private:
+    World::City* m_city;
     std::optional<utils::PointU> m_mousePosition;
     std::shared_ptr<iState> m_currentState;
 

@@ -3,12 +3,18 @@
 
 #include <QMainWindow>
 
+namespace World
+{
+class City;
+}
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget* p = 0);
+    explicit MainWindow(World::City* city, QWidget* p = nullptr);
+
     virtual ~MainWindow() = default;
 
 private slots:

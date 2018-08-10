@@ -1,7 +1,7 @@
 #include "screen.hpp"
 #include <states/istate.hpp>
 
-#include <world/currentcityholder.hpp>
+#include <world/city.hpp>
 
 #include <cassert>
 
@@ -11,8 +11,9 @@
 
 #include <QDebug>
 
-Screen::Screen(QWidget* p)
+Screen::Screen(World::City* city, QWidget* p)
     : QWidget(p)
+    , m_city(city)
 {
     //    setDragMode(QGraphicsView::ScrollHandDrag);
     setFocus();
@@ -32,12 +33,11 @@ void Screen::keyPressEvent(QKeyEvent* evt)
 
 void Screen::mouseMoveEvent(QMouseEvent* evt)
 {
-    if(!World::CurrentCityHolder::isInitialized()) return;
+    if(!m_city) return;
 
-    auto& city = World::CurrentCityHolder::get();
     QPointF position(evt->pos());
     //    qDebug() << position;
-    auto screenInfos = computeScreenInfos(city);
+    auto screenInfos = computeScreenInfos(*m_city);
     position -= QPoint(screenInfos.xMargin, screenInfos.yMargin);
     position /= screenInfos.ratio;
     //    qDebug() << position.toPoint();
@@ -48,13 +48,12 @@ void Screen::mouseMoveEvent(QMouseEvent* evt)
 
 void Screen::mouseReleaseEvent(QMouseEvent* evt)
 {
-    if(evt->button() != Qt::LeftButton || !m_currentState)
+    if(evt->button() != Qt::LeftButton || !m_currentState || !m_city)
     {
         QWidget::mouseReleaseEvent(evt);
         return;
     }
-    assert(World::CurrentCityHolder::isInitialized());
-    m_currentState->leftClick(World::CurrentCityHolder::get(), *m_mousePosition);
+    m_currentState->leftClick(*m_city, *m_mousePosition);
     update();
 }
 
@@ -89,16 +88,17 @@ void Screen::paintEvent(QPaintEvent* evt)
     painter.setBrush(Qt::black);
     painter.drawRect(rect());
 
-    assert(World::CurrentCityHolder::isInitialized());
-    auto& city = World::CurrentCityHolder::get();
-    auto screenInfos = computeScreenInfos(city);
-    double ratio = screenInfos.ratio;
+    if(m_city)
+    {
+        auto screenInfos = computeScreenInfos(*m_city);
+        double ratio = screenInfos.ratio;
 
-    painter.translate(screenInfos.xMargin, screenInfos.yMargin);
+        painter.translate(screenInfos.xMargin, screenInfos.yMargin);
 
-    painter.scale(ratio, ratio);
-    drawGround(city, painter);
-    drawCurrentStateArea(city, painter);
+        painter.scale(ratio, ratio);
+        drawGround(*m_city, painter);
+        drawCurrentStateArea(*m_city, painter);
+    }
 }
 
 double Screen::computeZoomToFit(const World::City& city) const

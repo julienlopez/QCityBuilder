@@ -5,15 +5,15 @@
 
 #include <QStatusBar>
 
-MainWindow::MainWindow(QWidget* p)
+MainWindow::MainWindow(World::City* city, QWidget* p)
     : QMainWindow(p)
 {
-    auto* screen = new Screen;
+    auto* screen = new Screen(city, this);
     connect(screen, &Screen::displayStatusText, this, &MainWindow::onDisplayStatusText);
     setCentralWidget(screen);
     screen->setMinimumSize(800, 600);
 
-    auto* resourcesDock = new ResourcesPanel;
+    auto* resourcesDock = new ResourcesPanel(city, this);
     addDockWidget(Qt::TopDockWidgetArea, resourcesDock);
 
     auto* stateDock = new StateDock;

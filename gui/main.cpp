@@ -1,7 +1,8 @@
 #include "mainwindow.hpp"
 
 #include <resourceshandler.hpp>
-#include <world/currentcityholder.hpp>
+
+#include <world/city.hpp>
 #include <world/jsonloader.hpp>
 
 #include <QApplication>
@@ -10,11 +11,11 @@
 #include <QJsonObject>
 #include <QTextStream>
 
-void loadTestCity()
+std::unique_ptr<World::City> loadTestCity()
 {
-    World::CurrentCityHolder::initialize("Test", {50, 50});
-    auto& city = World::CurrentCityHolder::get();
-    city.addRoad({{0, 5}, {1, 5}, {2, 5}, {3, 5}});
+    auto city = std::make_unique<World::City>("Test", utils::SizeU{50, 50});
+    city->addRoad({{0, 5}, {1, 5}, {2, 5}, {3, 5}});
+    return city;
 }
 
 void loadBuildingTypesFromFile(QString fileName)
@@ -55,9 +56,9 @@ int main(int argc, char* argv[])
 
     loadBuildingTypesFromFile("buildings.json");
     loadResourcesFromFile("ressources.json");
-    loadTestCity();
+    auto city = loadTestCity();
 
-    MainWindow w;
+    MainWindow w(city.get());
     w.show();
 
     return a.exec();
