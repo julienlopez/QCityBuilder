@@ -5,6 +5,8 @@
 #include <world/city.hpp>
 #include <world/jsonloader.hpp>
 
+#include <memory>
+
 #include <QApplication>
 #include <QDir>
 #include <QJsonArray>
