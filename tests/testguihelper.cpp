@@ -2,25 +2,6 @@
 
 #include <guihelper.hpp>
 
-namespace utils
-{
-::std::ostream& operator<<(::std::ostream& o, const SizeU& size)
-{
-    o << "(" << size.width() << ", " << size.height() << ")";
-    return o;
-}
-::std::ostream& operator<<(::std::ostream& o, const PointU& point)
-{
-    o << "{" << point.x() << ", " << point.y() << "}";
-    return o;
-}
-::std::ostream& operator<<(::std::ostream& o, const RectU& rect)
-{
-    o << "[" << rect.topLeft() << ", " << rect.bottomRight() << " => " << rect.size() << "}";
-    return o;
-}
-}
-
 TEST_CASE("Test Gui Helper")
 {
 
