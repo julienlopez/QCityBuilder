@@ -2,12 +2,12 @@
 #define PRODUCER_HPP
 
 #include "inventory.hpp"
-#include "production.hpp"
+#include "recipe.hpp"
 
 class Producer
 {
 public:
-    Producer(std::size_t capacity, Production production);
+    Producer(std::size_t capacity, Recipe production);
 
     Inventory& inventory();
 
@@ -20,7 +20,7 @@ public:
     bool isBusy() const;
 
 private:
-    Production m_production;
+    Recipe m_production;
     Inventory m_inventory;
     std::size_t m_currentTimeout;
 };

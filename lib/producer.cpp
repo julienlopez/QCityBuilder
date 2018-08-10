@@ -2,7 +2,7 @@
 
 #include <utility>
 
-Producer::Producer(std::size_t capacity, Production production)
+Producer::Producer(std::size_t capacity, Recipe production)
     : m_production(std::move(production))
     , m_inventory(capacity)
 {

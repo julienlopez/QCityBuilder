@@ -12,10 +12,9 @@ TEST_CASE("Test Producer")
     const std::size_t output_amount1 = 1;
     const std::size_t timeout = 20;
 
-    Producer producer
-        = {200,
-           Production(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
-                      {std::make_pair(output_type1, output_amount1)})};
+    Producer producer = {
+        200, Recipe(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
+                    {std::make_pair(output_type1, output_amount1)})};
 
     SECTION("Inventory Empty On Creation")
     {
@@ -66,10 +65,9 @@ TEST_CASE("Test Producer Enough For One Round")
     const std::size_t output_amount1 = 1;
     const std::size_t timeout = 20;
 
-    Producer producer
-        = {200,
-           Production(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
-                      {std::make_pair(output_type1, output_amount1)})};
+    Producer producer = {
+        200, Recipe(timeout, {std::make_pair(input_type1, input_amount1), std::make_pair(input_type2, input_amount2)},
+                    {std::make_pair(output_type1, output_amount1)})};
 
     producer.inventory().add(input_type1, input_amount1);
     producer.inventory().add(input_type2, input_amount2);

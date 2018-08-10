@@ -12,7 +12,6 @@ MOC_DIR= $$QCITYBUILDER_MOC_LIB
 SOURCES += \
     inventory.cpp \
     producer.cpp \
-    production.cpp \
     world/map.cpp \
     world/building.cpp \
     world/city.cpp \
@@ -22,7 +21,8 @@ SOURCES += \
     world/buildingtypehandler.cpp \
     guihelper.cpp \
     inventorysummary.cpp \
-    resourceshandler.cpp
+    resourceshandler.cpp \
+    recipe.cpp
 
 HEADERS  += \
     utils/namespace_utils.hpp \
@@ -36,7 +36,6 @@ HEADERS  += \
     utils/containerwithidentifier.hpp \
     inventory.hpp \
     producer.hpp \
-    production.hpp \
     world/map.hpp \
     world/namespace_world.hpp \
     utils/rect.hpp \
@@ -50,4 +49,5 @@ HEADERS  += \
     world/buildingtypehandler.hpp \
     guihelper.hpp \
     inventorysummary.hpp \
-    resourceshandler.hpp
+    resourceshandler.hpp \
+    recipe.hpp

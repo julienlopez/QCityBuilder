@@ -5,15 +5,14 @@
 
 #include <vector>
 
-class Production
+class Recipe
 {
 public:
     using identifier = ResourcesHandler::type_identifier;
     using pair_identifier_amount = std::pair<identifier, std::size_t>;
     using container_pairs_identifier_amount = std::vector<pair_identifier_amount>;
 
-    Production(std::size_t timeout_, container_pairs_identifier_amount inputs_,
-               container_pairs_identifier_amount output_s);
+    Recipe(std::size_t timeout_, container_pairs_identifier_amount inputs_, container_pairs_identifier_amount output_s);
 
     const container_pairs_identifier_amount& inputs() const;
     const container_pairs_identifier_amount& outputs() const;
