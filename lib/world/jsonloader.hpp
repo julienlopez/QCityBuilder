@@ -17,27 +17,22 @@ class City;
 class Building;
 struct BuildingType;
 
-class JsonLoader : private utils::noninstantiable
+namespace JsonLoader
 {
-public:
-    static QJsonObject stringToJsonObject(const std::string& json);
-    static QJsonArray stringToJsonArray(const std::string& json);
 
-    static City parseCity(const QJsonObject& object);
+QJsonObject stringToJsonObject(const std::string& json);
 
-    static Building parseBuilding(const QJsonObject& object);
+QJsonArray stringToJsonArray(const std::string& json);
 
-    static BuildingType parseBuildingType(const QJsonObject& object);
+City parseCity(const QJsonObject& object);
 
-    static utils::SizeU parseSizeU(const QJsonObject& object);
-    static utils::PointU parsePointU(const QJsonObject& object);
-    static utils::RectU parseRectU(const QJsonObject& object);
+Building parseBuilding(const QJsonObject& object);
 
-private:
-    static std::string findString(const QJsonObject& object, const std::string& name);
-    static double findDouble(const QJsonObject& object, const std::string& name);
-    static QJsonObject findObject(const QJsonObject& object, const std::string& name);
-    static QJsonArray findArray(const QJsonObject& object, const std::string& name);
+BuildingType parseBuildingType(const QJsonObject& object);
+
+utils::SizeU parseSizeU(const QJsonObject& object);
+utils::PointU parsePointU(const QJsonObject& object);
+utils::RectU parseRectU(const QJsonObject& object);
 };
 
 END_NAMESPACE_WORLD

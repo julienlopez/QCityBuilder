@@ -57,6 +57,7 @@ QJsonObject JsonSaver::saveBuildingType(const BuildingType& buildingtype)
     QJsonObject res;
     res.insert("name", QString::fromStdString(buildingtype.name));
     res.insert("size", saveSizeU(buildingtype.size));
+    res.insert("recipes", QJsonArray());
 
     QJsonArray requirements;
     int i = 0;

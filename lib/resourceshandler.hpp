@@ -4,6 +4,7 @@
 #include "utils/containerwithidentifier.hpp"
 #include "utils/singleton.hpp"
 
+#include <optional>
 #include <vector>
 
 class ResourcesHandler : private utils::singleton<ResourcesHandler>,
@@ -23,6 +24,8 @@ public:
     static void loadResources(const std::vector<std::string>& values);
 
     static void clear();
+
+    static std::optional<type_identifier> findByName(const std::string& name);
 };
 
 #endif // RESOURCESHANDLER_HPP
