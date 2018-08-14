@@ -2,8 +2,8 @@
 
 #include <utility>
 
-Producer::Producer(std::size_t capacity, Recipe production)
-    : m_production(std::move(production))
+Producer::Producer(std::size_t capacity, std::optional<Recipe> recipe)
+    : m_recipe(std::move(recipe))
     , m_inventory(capacity)
 {
     m_currentTimeout = 0;
@@ -21,9 +21,10 @@ const Inventory& Producer::inventory() const
 
 void Producer::update()
 {
+    if(!m_recipe) return;
     if(!isBusy())
     {
-        const auto& needed = m_production.inputs();
+        const auto& needed = m_recipe->inputs();
         for(const auto& n : needed)
         {
             if(!m_inventory.hasEnough(n.first, n.second)) return;
@@ -34,10 +35,10 @@ void Producer::update()
         }
     }
     m_currentTimeout++;
-    if(m_currentTimeout >= m_production.timeout())
+    if(m_currentTimeout >= m_recipe->timeout())
     {
         m_currentTimeout = 0;
-        const auto& produced = m_production.outputs();
+        const auto& produced = m_recipe->outputs();
         for(const auto& p : produced)
         {
             m_inventory.add(p.first, p.second);

@@ -8,7 +8,7 @@ Building::Building(type_identifier type_, utils::PointU entrance_, utils::RectU 
     : m_type(type_)
     , m_entrance(std::move(entrance_))
     , m_rectangle(std::move(rectangle_))
-    , m_inventory(50)
+    , m_producter(50)
 {
     if(recipes().size() == 1) m_current_recipe_index = 0;
 }
@@ -30,12 +30,12 @@ const utils::RectU& Building::rectangle() const
 
 const Inventory& Building::inventory() const
 {
-    return m_inventory;
+    return m_producter.inventory();
 }
 
 Inventory& Building::inventory()
 {
-    return m_inventory;
+    return m_producter.inventory();
 }
 
 std::optional<Recipe> Building::currentRecipe() const

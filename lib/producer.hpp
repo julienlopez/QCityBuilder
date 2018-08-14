@@ -4,10 +4,12 @@
 #include "inventory.hpp"
 #include "recipe.hpp"
 
+#include <optional>
+
 class Producer
 {
 public:
-    Producer(std::size_t capacity, Recipe production);
+    Producer(std::size_t capacity, std::optional<Recipe> recipe = std::nullopt);
 
     Inventory& inventory();
 
@@ -20,7 +22,7 @@ public:
     bool isBusy() const;
 
 private:
-    Recipe m_production;
+    std::optional<Recipe> m_recipe;
     Inventory m_inventory;
     std::size_t m_currentTimeout;
 };

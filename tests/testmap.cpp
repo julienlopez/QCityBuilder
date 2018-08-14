@@ -6,6 +6,7 @@ using namespace World;
 
 TEST_CASE("Test Map")
 {
+    World::BuildingTypeHandler::instance().clear();
     const auto bt = World::BuildingTypeHandler::instance().add({"test_building", utils::SizeU(10, 5), {}});
 
     City city{"TestTown", {10, 10}};

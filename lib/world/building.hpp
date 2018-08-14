@@ -2,7 +2,7 @@
 #define BUILDING_HPP
 
 #include "buildingtypehandler.hpp"
-#include "inventory.hpp"
+#include "producer.hpp".hpp "
 
 #include <utils/rect.hpp>
 
@@ -30,7 +30,7 @@ private:
     type_identifier m_type;
     utils::PointU m_entrance;
     utils::RectU m_rectangle;
-    Inventory m_inventory;
+    Producer m_producter;
     std::optional<std::size_t> m_current_recipe_index = std::nullopt;
 };
 
