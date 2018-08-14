@@ -92,3 +92,8 @@ TEST_CASE("Test Producer Enough For One Round")
         CHECK(!producer.isBusy());
     }
 }
+
+TEST_CASE("Test producer with a recipe without inputs")
+{
+
+}
