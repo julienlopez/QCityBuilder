@@ -22,11 +22,16 @@ public:
     const Inventory& inventory() const;
     Inventory& inventory();
 
+    std::optional<Recipe> currentRecipe() const;
+
+    const BuildingType::recipes_container_t& recipes() const;
+
 private:
     type_identifier m_type;
     utils::PointU m_entrance;
     utils::RectU m_rectangle;
     Inventory m_inventory;
+    std::optional<std::size_t> m_current_recipe_index = std::nullopt;
 };
 
 END_NAMESPACE_WORLD

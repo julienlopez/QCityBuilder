@@ -26,4 +26,5 @@ SOURCES += main.cpp \
     testbuildingtype.cpp \
     testrect.cpp \
     testguihelper.cpp \
-    test_villager.cpp
+    test_villager.cpp \
+    test_building.cpp

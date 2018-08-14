@@ -6,6 +6,8 @@ using namespace World;
 
 TEST_CASE("Test Map")
 {
+    const auto bt = World::BuildingTypeHandler::instance().add({"test_building", utils::SizeU(10, 5), {}});
+
     City city{"TestTown", {10, 10}};
     const Map& map = city.map();
 
@@ -18,7 +20,7 @@ TEST_CASE("Test Map")
 
     SECTION("Squares Not Empty After Placing A Building")
     {
-        city.add(Building(0, utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
+        city.add(Building(bt, utils::PointU(5, 5), utils::RectU(utils::PointU(2, 2), utils::PointU(5, 4))));
         for(std::size_t x = 0; x < map.width(); x++)
             for(std::size_t y = 0; y < map.height(); y++)
             {
